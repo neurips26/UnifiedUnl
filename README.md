@@ -89,7 +89,7 @@ Stable rankings:
 ## Missing Piece: Knowledge Recoverability
 
 <p align="center">
-  <img src="outputs/figures/flow.pdf" width="700">
+  <img src="outputs/figures/flow_page-0001.jpg" width="700">
 </p>
 
 None of the standard metrics capture whether forgotten knowledge can be recovered through indirect queries. This highlights a fundamental limitation of current evaluation.
