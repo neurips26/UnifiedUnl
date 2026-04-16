@@ -1,16 +1,17 @@
 # Metric Unreliability in Multimodal Machine Unlearning
+
 ### A Systematic Analysis and Principled Unified Score
 
-[![Benchmark CI](https://github.com/neurips26/UnifiedUnl/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/neurips26/UnifiedUnl/actions/workflows/ci.yml)
+[![Benchmark CI](https://github.com/neurips26/UnifiedUnl/actions/workflows/ci.yml/badge.svg?branch=main\&event=push)](https://github.com/neurips26/UnifiedUnl/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/neurips26/UnifiedUnl/blob/main/LICENSE)
-[![NeurIPS 2026 D&B](https://img.shields.io/badge/NeurIPS_2026-Datasets_%26_Benchmarks-purple.svg)](https://openreview.net/)
+[![NeurIPS 2026 D\&B](https://img.shields.io/badge/NeurIPS_2026-Datasets_%26_Benchmarks-purple.svg)](https://openreview.net/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 
 ---
 
 ## TL;DR
 
-Five widely-used metrics for evaluating multimodal machine unlearning **contradict each other**. A method ranked #1 by FA can be ranked #4 by RA. This contradiction is **worse in multimodal (VQA) settings** than in unimodal (CIFAR-10). We propose a **Unified Quality Score (UQS)** whose weights are empirically derived from Spearman correlations with the gold-standard retrained model.
+Standard metrics for multimodal machine unlearning are mutually contradictory. We show that output-based metrics (FA, RA, MIA) and representation-based metrics (AD, JS) capture fundamentally different objectives, leading to inconsistent rankings. We introduce a Unified Quality Score (UQS) that aggregates metrics using empirically derived reliability weights.
 
 ---
 
@@ -23,12 +24,14 @@ pip install -r requirements.txt
 python benchmark/run_benchmark.py --quick
 ```
 
-Runs the full analysis pipeline with synthetic data in ~5 minutes. Produces:
-- `outputs/leaderboard.html` — interactive leaderboard (open in browser)
-- `outputs/figures/` — all 5 paper figures as PDF
-- `outputs/tables/` — all 6 LaTeX tables
+Runs a lightweight version of the pipeline with synthetic data (~5 minutes). Produces:
 
-To reproduce with real models (~2 days on RTX 4090):
+* `outputs/leaderboard.html` — interactive leaderboard
+* `outputs/figures/` — representative figures (quick mode subset)
+* `outputs/tables/` — generated LaTeX tables
+
+For full reproduction (~2 days on a single RTX 4090 GPU):
+
 ```bash
 python main.py --stage all
 ```
@@ -37,107 +40,92 @@ python main.py --stage all
 
 ## Key Findings
 
-| Finding | Result |
-|---------|--------|
-| **F1** | Kendall's τ between FA and RA ≈ −0.4 — metrics contradict each other |
-| **F2** | Mean pairwise τ is 0.3 lower in multimodal vs unimodal — image+text amplifies contradiction |
-| **F3** | AD and JS are most reliable predictors of retrained-model closeness (Spearman ρ > 0.7) |
-| **UQS** | Principled composite score with τ > 0.9 stability across 500 random weight perturbations |
+| Finding | Result                                                                         |
+| ------- | ------------------------------------------------------------------------------ |
+| **F1**  | Metrics form two conflicting clusters: {FA, RA, MIA} vs {AD, JS}               |
+| **F2**  | Strong contradiction between clusters (e.g., τ(FA, AD) ≈ −0.26)                |
+| **F3**  | Multimodal settings amplify disagreement (mean τ: 0.086 vs 0.158 in unimodal)  |
+| **F4**  | RA is the most reliable metric (ρ ≈ 0.484), FA is negatively correlated        |
+| **UQS** | Reliability-weighted score with stable rankings (τ ≈ 0.65 under perturbations) |
 
 ---
 
 ## Repository Structure
 
 ```
-multimodal-unlearning-eval/
+UnifiedUnl/
 ├── benchmark/
-│   ├── run_benchmark.py        ← ONE-COMMAND benchmark runner
-│   ├── generate_tables.py      ← All 6 LaTeX tables
-│   └── leaderboard.py          ← Interactive HTML leaderboard
-├── config.py                   ← All settings (edit only this)
-├── main.py                     ← Stage-by-stage pipeline
-├── test_pipeline.py            ← Smoke test (CPU, <2 min)
-├── setup.py
+│   ├── run_benchmark.py
+│   ├── generate_tables.py
+│   └── leaderboard.py
+├── config.py
+├── main.py
+├── test_pipeline.py
 ├── requirements.txt
 ├── data/
-│   ├── loader.py               ← MLLMU-Bench, UnLOK-VQA, MMUBench, CIFAR-10
-│   └── dataset.py              ← VQADataset + DataLoader
 ├── models/
-│   └── llava_model.py          ← LLaVA-1.5-7B + LoRA
 ├── unlearning/
-│   └── methods.py              ← GA, Random Labels, FT-Retain, SalUn
 ├── evaluation/
-│   ├── metrics.py              ← FA, RA, MIA, AD, JS
-│   └── uqs.py                  ← UQS formula, weight derivation, ablation
 ├── analysis/
-│   ├── findings.py             ← 3 core findings
-│   └── visualise.py            ← 5 paper figures (PDF)
 ├── scripts/
-│   └── unimodal_baseline.py    ← ResNet-18 + CIFAR-10
-├── DATASHEET.md                ← Dataset documentation
-├── croissant_metadata.json     ← Machine-readable metadata (NeurIPS D&B required)
-└── LICENSE                     ← Apache 2.0
+├── DATASHEET.md
+├── croissant_metadata.json
+└── LICENSE
 ```
 
 ---
 
 ## Experimental Setup
 
-**Model:** LLaVA-1.5-7B + LoRA (r=8, α=16) | RTX 4090 24GB
+**Model:** LLaVA-1.5-7B with LoRA (r=8, α=16)
 
 **Datasets:**
 
-| Dataset | HuggingFace ID | Reference |
-|---------|----------------|-----------|
-| MLLMU-Bench | franciscoliu/MLLMU-Bench | Liu et al., NAACL 2025 |
-| UnLOK-VQA | vpatil24/unlok-vqa | Patil et al., 2025 |
-| MMUBench | linhx/MMUBench | Li et al., NeurIPS 2024 |
-| CIFAR-10 | torchvision built-in | Baseline |
+| Dataset     | HuggingFace ID           |
+| ----------- | ------------------------ |
+| MLLMU-Bench | franciscoliu/MLLMU-Bench |
+| UnLOK-VQA   | vpatil24/unlok-vqa       |
+| MMUBench    | linhx/MMUBench           |
+| CIFAR-10    | torchvision              |
 
-**Unlearning Methods:** Gradient Ascent · Random Labels · FT-Retain · SalUn (ICLR 2024)
+**Unlearning Methods:**
+Gradient Ascent · Random Labels · FT-Retain · SalUn
 
-**Metrics:** FA↓ · RA↑ · MIA↓ · AD↓ · JS↓
-
-**Seeds:** 42 · 123 · 5508
+**Metrics:**
+FA ↓ · RA ↑ · MIA ↓ · AD ↓ · JS ↓
 
 ---
 
 ## Reproduce Step by Step
 
 ```bash
-# 0. Install
+# Install dependencies
 pip install -r requirements.txt
 
-# 1. Smoke test (CPU, no download needed)
+# Smoke test (CPU)
 python test_pipeline.py
 
-# 2. Full pipeline
-python main.py --stage train      # ~3 hours
-python main.py --stage unlearn    # ~2 days
-python main.py --stage evaluate   # ~4 hours
-python main.py --stage unimodal   # ~30 min
-python main.py --stage analyse    # ~5 min
-
-# 3. Single run
-python main.py --stage unlearn --dataset mllmu_bench --method gradient_ascent --seed 42
-
-# 4. Re-run analysis from saved results
-python benchmark/run_benchmark.py --results-only
+# Full pipeline
+python main.py --stage train
+python main.py --stage unlearn
+python main.py --stage evaluate
+python main.py --stage unimodal
+python main.py --stage analyse
 ```
 
 ---
 
 ## NeurIPS D&B Track Compliance
 
-| Requirement | Status |
-|-------------|--------|
-| Code publicly accessible at submission | ✅ GitHub |
-| Code documented and executable | ✅ README + CI |
-| Source datasets on HuggingFace | ✅ All 3 datasets |
-| Croissant metadata file | ✅ `croissant_metadata.json` |
-| Datasheet (Gebru et al. 2021) | ✅ `DATASHEET.md` |
-| License | ✅ Apache 2.0 |
-| CI passing | ✅ GitHub Actions |
+| Requirement              | Status |
+| ------------------------ | ------ |
+| Code publicly accessible | Yes    |
+| Executable pipeline      | Yes    |
+| Datasets available       | Yes    |
+| Metadata (Croissant)     | Yes    |
+| Datasheet                | Yes    |
+| License                  | Yes    |
+| CI passing               | Yes    |
 
 ---
 
@@ -145,10 +133,8 @@ python benchmark/run_benchmark.py --results-only
 
 ```bibtex
 @inproceedings{anonymous2026metric,
-  title     = {Metric Unreliability in Multimodal Machine Unlearning:
-               A Systematic Analysis and Principled Unified Score},
-  author    = {Anonymous},
-  booktitle = {NeurIPS Datasets and Benchmarks Track},
-  year      = {2026},
+  title={Metric Unreliability in Multimodal Machine Unlearning: A Systematic Analysis and Principled Unified Score},
+  booktitle={NeurIPS Datasets and Benchmarks Track},
+  year={2026}
 }
 ```
