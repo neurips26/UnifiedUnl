@@ -10,7 +10,9 @@
 
 ## TL;DR
 
-Five standard metrics for evaluating multimodal machine unlearning **contradict each other** in a systematic way. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate it in a pilot study (23/24 samples, 96% leakage), and introduce **UQS** — a principled composite score with reliability-weighted aggregation.
+Five standard metrics for evaluating multimodal machine unlearning **contradict each other** in a systematic way.
+
+This repository provides a fully reproducible evaluation pipeline and benchmark. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate it in a pilot study (23/24 samples, 96% leakage), and introduce **UQS** — a data-driven composite score with reliability-weighted aggregation.
 
 ---
 
@@ -20,14 +22,14 @@ Five standard metrics for evaluating multimodal machine unlearning **contradict 
   <img src="outputs/figures/fig1_tau_heatmap_page-0001.jpg" width="500">
 </p>
 
-Metrics form **two anti-correlated clusters**:
+Metrics form **two opposing metric clusters**:
 
 - **Output-behaviour cluster:** FA, RA, MIA — measure model outputs
 - **Oracle-alignment cluster:** AD, JS — measure distance from retrained model M*
 
 This produces systematic rank reversals. The same method ranked **#1 by MIA** is ranked **#4 by AD**.
 
-Key statistic: **τ(FA, AD) = −0.26** — the two most commonly reported metrics actively disagree.
+Key statistic: **τ(FA, AD) = −0.26** — the two most commonly reported metrics show statistical disagreement.
 
 ---
 
@@ -37,7 +39,7 @@ Key statistic: **τ(FA, AD) = −0.26** — the two most commonly reported metri
   <img src="outputs/figures/fig2_contradiction_page-0001.jpg" width="500">
 </p>
 
-**No method is consistently ranked best across all metrics.** Gradient Ascent ranks #1 by MIA but #4 by AD. Random Labels ranks #1 by four metrics but #3 by MIA. A researcher choosing a different metric would reach a different conclusion about which method to deploy.
+**No method is consistently ranked best across all metrics.** Gradient Ascent ranks #1 by MIA but #4 by AD. Random Labels ranks #1 by four metrics but #3 by MIA. Different metric choices lead to different conclusions about method performance.
 
 | Method | FA↓ | RA↑ | MIA↓ | AD↓ | JS↓ | UQS↑ |
 |--------|-----|-----|------|------|-----|------|
@@ -64,7 +66,7 @@ Mean pairwise metric agreement (Kendall's τ) is lower in multimodal VQA than un
 | Unimodal CIFAR-10 | 0.158 |
 | Gap (Δ) | −0.072 |
 
-The image–text dual pathway creates additional dimensions for inter-metric divergence that single-pathway models cannot exhibit.
+The image–text dual pathway creates additional dimensions for inter-metric divergence that may amplify inter-metric divergence in single-pathway models.
 
 ---
 
@@ -153,7 +155,7 @@ Preliminary evidence suggests the output-surface vs oracle-alignment contradicti
 | **F1** | τ(FA,AD) = −0.26: two anti-correlated metric clusters | §5.1, Table 3 |
 | **F2** | Multimodal VQA has 45% lower metric agreement (Δτ = 0.072) | §5.2, Table 5 |
 | **F3** | RA most reliable (ρ=0.484, p=0.003); FA negatively correlated (p=0.011) | §5.3, Table 6 |
-| **KR** | 23/24 FA=0 samples still leaked (96%); negation probes 100% | §4.2, Table 2 |
+| **KR** | 23/24 FA=0 samples leaked in pilot study (96%); negation probes 100% within pilot setup | §4.2, Table 2 |
 | **UQS** | Stable composite score τ=0.647±0.262 across 100 perturbations | §6, Table 8 |
 
 ---
@@ -228,17 +230,8 @@ UnifiedUnl/
 
 ## Pre-computed Results
 
-All evaluation result files are included in `outputs/` and hosted at:
-
-```
-https://huggingface.co/datasets/TODO/multimodal-unlearning-eval
-```
-
-Three representative checkpoints (~15 GB) are available for reviewers who want to verify evaluation code without downloading all 36 (~583 GB):
-
-```
-https://huggingface.co/TODO/multimodal-unlearning-eval-checkpoints
-```
+All evaluation result files are included in `outputs/` directly in this repository.
+Three representative checkpoints (~15 GB) and a HuggingFace dataset page will be linked here upon deanonymization after review.
 
 ---
 
