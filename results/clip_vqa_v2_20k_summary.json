@@ -1,0 +1,44 @@
+{
+  "42": {
+    "ORIG": {
+      "forget_acc": 0.4702702760696411,
+      "retain_acc": 0.3718176484107971
+    },
+    "RETR": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.4656601548194885
+    },
+    "MU_ALIGN": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.48875072598457336
+    }
+  },
+  "123": {
+    "ORIG": {
+      "forget_acc": 0.9770240783691406,
+      "retain_acc": 0.163338303565979
+    },
+    "RETR": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.4348733127117157
+    },
+    "MU_ALIGN": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.4897168278694153
+    }
+  },
+  "5508": {
+    "ORIG": {
+      "forget_acc": 0.9613686800003052,
+      "retain_acc": 0.18025362491607666
+    },
+    "RETR": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.45803138613700867
+    },
+    "MU_ALIGN": {
+      "forget_acc": 0.0,
+      "retain_acc": 0.4969806671142578
+    }
+  }
+}

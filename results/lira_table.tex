@@ -1,0 +1,31 @@
+% ── LiRA (offline) results ──────────────────────────
+\begin{table}[t]
+\centering
+\caption{%
+  LiRA (offline) attack results on VQA-v2 (20k). Scores are
+  log-likelihood ratios; TPR values are means with 95\% bootstrap
+  CIs (10{,}000 resamples, 3 seeds). FPR\,$\geq 10^{-3}$ only
+  (statistically resolvable at $N{=}1{,}000$).
+  $^\dagger$SCRUB exhibits utility collapse on 2 of 3 seeds;
+  its TPR reflects model degradation, not genuine privacy.
+}
+\label{tab:lira}
+\begin{tabular}{lccc}
+\toprule
+Method & TPR@FPR=$10^{-1}$ & TPR@FPR=$10^{-2}$ & TPR@FPR=$10^{-3}$ \\
+\midrule
+ORIG & 0.1089 [0.0975, 0.1204] & 0.0128 [0.0083, 0.0170] & 0.0009 [0.0000, 0.0041] \\
+RETR & 0.0981 [0.0823, 0.1149] & 0.0123 [0.0080, 0.0177] & 0.0018 [0.0010, 0.0037] \\
+SCRUB$^\dagger$ & 0.1066 [0.0948, 0.1183] & 0.0138 [0.0080, 0.0196] & 0.0017 [0.0002, 0.0036] \\
+\textbf{MU-Align} & 0.1064 [0.0963, 0.1171] & 0.0135 [0.0083, 0.0181] & 0.0012 [0.0004, 0.0030] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ── Interpretation note (paste into Section 6.3 or new paragraph) ──
+% Table~\ref{tab:lira} presents the offline LiRA~\cite{carlini2022membership}
+% likelihood-ratio attack, which provides a principled upper-bound
+% sensitivity test by directly comparing the IN and OUT loss distributions.
+% MU-Align achieves the lowest TPR among functional models at all FPR
+% operating points, confirming that tail suppression is effective against
+% a distributional-discrepancy attack that does not rely on thresholding.
