@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-Five standard metrics for evaluating multimodal machine unlearning **contradict each other** in a systematic, predictable way. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate it empirically (96% leakage), and introduce **UQS** — a principled composite score with reliability-weighted aggregation.
+Five standard metrics for evaluating multimodal machine unlearning **contradict each other** in a systematic way. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate it in a pilot study (23/24 samples, 96% leakage), and introduce **UQS** — a principled composite score with reliability-weighted aggregation.
 
 ---
 
@@ -37,7 +37,7 @@ Key statistic: **τ(FA, AD) = −0.26** — the two most commonly reported metri
   <img src="outputs/figures/fig2_contradiction_page-0001.jpg" width="500">
 </p>
 
-**No consistent best method exists under individual metrics.** Gradient Ascent ranks #1 by MIA but #4 by AD. Random Labels ranks #1 by four metrics but #3 by MIA. A researcher choosing a different metric would reach a different conclusion about which method to deploy.
+**No method is consistently ranked best across all metrics.** Gradient Ascent ranks #1 by MIA but #4 by AD. Random Labels ranks #1 by four metrics but #3 by MIA. A researcher choosing a different metric would reach a different conclusion about which method to deploy.
 
 | Method | FA↓ | RA↑ | MIA↓ | AD↓ | JS↓ | UQS↑ |
 |--------|-----|-----|------|------|-----|------|
@@ -56,7 +56,7 @@ Key statistic: **τ(FA, AD) = −0.26** — the two most commonly reported metri
   <img src="outputs/figures/fig3_modality_page-0001.jpg" width="500">
 </p>
 
-Mean pairwise metric agreement (Kendall's τ) is **45% lower** in multimodal VQA than unimodal classification:
+Mean pairwise metric agreement (Kendall's τ) is lower in multimodal VQA than unimodal classification (Δτ = 0.072):
 
 | Setting | Mean pairwise τ |
 |---------|----------------|
@@ -88,7 +88,7 @@ The image–text dual pathway creates additional dimensions for inter-metric div
 | SalUn | 3 | 18 | 18/18 (100%) | 0.74 |
 | **Combined** | 6 | 24 | **23/24 (96%)** | 0.65 |
 
-Negation probes achieved **100% recovery** across all methods and seeds. None of FA, RA, MIA, AD, or JS measures KR.
+Negation probes achieved **100% recovery within the pilot setup** (2 methods × 3 seeds, MMUBench). None of FA, RA, MIA, AD, or JS measures KR.
 
 ---
 
@@ -121,12 +121,12 @@ FA is negatively reliable because methods achieving FA≈0 often do so via **out
 UQS aggregates all five metrics weighted by empirical reliability:
 
 ```
-UQS(M̂) = 0.656·RA + 0.304·(1−MIA) + 0.014·(1−FA) + 0.014·exp(−AD/100) + 0.014·(1−JS)
+UQS(M̂) = w₁·(1−FA) + w₂·RA + w₃·(1−MIA) + w₄·exp(−AD/100) + w₅·(1−JS)
 ```
 
-Weights are derived via 5-fold cross-validated Spearman ρ with oracle M* — not hand-tuned.
+Weights `wᵢ = max(ρᵢ, ε) / Σ max(ρⱼ, ε)` are derived via 5-fold cross-validated Spearman ρ with oracle M* — not hand-tuned. The reported values (w_RA=0.656, w_MIA=0.304, others=0.014) reflect the LLaVA-MMUBench setting; weights should be re-derived for different models or datasets.
 
-**Why not Borda count or voting?** Both assign equal weight to RA (p=0.003) and JS (p=0.766). Giving them equal vote ignores the data. Weighted average by empirical reliability is the minimum-assumption principled choice.
+**Why not Borda count or voting?** Both assign equal weight to RA (p=0.003) and JS (p=0.766). Giving them equal vote ignores the data. Weighted average by empirical reliability is a data-driven aggregation based on observed metric performance — the minimum-assumption choice consistent with the data.
 
 **Stability:** τ = 0.647 ± 0.262 across 100 Dirichlet-sampled random weight perturbations — rankings are robust, not brittle.
 
@@ -142,7 +142,7 @@ Replicated on BLIP-2 OPT-2.7B (ViT-g/14 + Q-Former + OPT-2.7B), MMUBench, seed 4
 - FT-Retain: FA=0.667, RA=0.630, AD=44.84
 - **τ(RA, AD) = −1.0** — full rank reversal, same direction as LLaVA (−0.11)
 
-The output-surface vs oracle-alignment contradiction is **not architecture-specific**.
+Preliminary evidence suggests the output-surface vs oracle-alignment contradiction **generalises across architectures**.
 
 ---
 
@@ -169,7 +169,7 @@ pip install -r requirements.txt
 python benchmark/run_benchmark.py --quick
 ```
 
-Produces all 5 figures, 6 LaTeX tables, and an interactive leaderboard using synthetic data.
+Produces representative figures and tables (synthetic data, not exact paper reproduction) and an interactive leaderboard.
 
 ### From pre-computed results (real numbers, no GPU)
 
