@@ -10,7 +10,7 @@
 
 ## TL;DR
 
-Five widely-used metrics for evaluating multimodal machine unlearning **contradict each other**. A method ranked #1 by FA can be ranked #4 by RA. This contradiction is **worse in multimodal (VQA) settings** than unimodal (CIFAR-10). We propose a **Unified Quality Score (UQS)** whose weights are derived empirically from Spearman correlation with the gold-standard retrained model.
+Five widely-used metrics for evaluating multimodal machine unlearning **contradict each other**. A method ranked #1 by FA can be ranked #4 by RA. This contradiction is **worse in multimodal (VQA) settings** than unimodal (CIFAR-10). We propose a **Unified Quality Score (UQS)** whose weights are empirically derived from Spearman correlations with the gold-standard retrained model.
 
 ---
 
