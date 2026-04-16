@@ -12,7 +12,7 @@
 
 Five standard metrics for evaluating multimodal machine unlearning **contradict each other** in a systematic and reproducible way.
 
-This repository provides a fully reproducible evaluation pipeline. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate it in a pilot study (23/24 samples, 96% leakage), and introduce **UQS** — a data-driven composite score with reliability-weighted aggregation.
+This repository provides a fully reproducible evaluation pipeline for multimodal unlearning. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate this in a pilot study (23/24 samples, 96% leakage), and introduce **UQS** — a data-driven composite score with reliability-weighted aggregation.
 
 ---
 
@@ -128,7 +128,7 @@ UQS(M̂) = w₁·(1−FA) + w₂·RA + w₃·(1−MIA) + w₄·exp(−AD/100) + 
 
 Weights `wᵢ = max(ρᵢ, ε) / Σ max(ρⱼ, ε)` are derived via 5-fold cross-validated Spearman ρ with oracle M* — not hand-tuned. The reported values (w_RA=0.656, w_MIA=0.304, others=0.014) reflect the LLaVA-MMUBench setting; weights should be re-derived for different models or datasets.
 
-**Why not Borda count or voting?** Both assign equal weight to RA (p=0.003) and JS (p=0.766). Giving them equal vote ignores the data. Weighted average by empirical reliability is a data-driven aggregation based on observed metric reliability.
+**Why not Borda count or voting?** Both assign equal weight to RA (p=0.003) and JS (p=0.766). Giving them equal vote ignores the data. Weighted average by empirical reliability aggregates metrics according to observed reliability.
 
 **Stability:** τ = 0.647 ± 0.262 across 100 Dirichlet-sampled random weight perturbations — rankings are robust, not brittle.
 
@@ -153,7 +153,7 @@ Preliminary evidence suggests the output-surface vs oracle-alignment contradicti
 | Finding | Result | Where |
 |---------|--------|-------|
 | **F1** | τ(FA,AD) = −0.26: two opposing metric clusters | §5.1, Table 3 |
-| **F2** | Multimodal VQA has 45% lower metric agreement (Δτ = 0.072) | §5.2, Table 5 |
+| **F2** | Multimodal VQA shows lower metric agreement (Δτ = 0.072) | §5.2, Table 5 |
 | **F3** | RA most reliable (ρ=0.484, p=0.003); FA negatively correlated (p=0.011) | §5.3, Table 6 |
 | **KR** | 23/24 FA=0 samples leaked in pilot study (96%); negation probes 100% within pilot setup | §4.2, Table 2 |
 | **UQS** | Stable composite score τ=0.647±0.262 across 100 perturbations | §6, Table 8 |
