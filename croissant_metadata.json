@@ -50,7 +50,7 @@
       "@type": "cr:FileObject",
       "@id": "multimodal_results",
       "name": "multimodal_results.json",
-      "contentUrl": "outputs/multimodal_results.json",
+      "contentUrl": "https://github.com/neurips26/UnifiedUnl/blob/main/outputs/multimodal_results.json",
       "encodingFormat": "application/json",
       "sha256": "4093fa06075785d3f20970395ebf88806d9ddd72993e22be449390500a71d54b"
     },
@@ -58,7 +58,7 @@
       "@type": "cr:FileObject",
       "@id": "unimodal_results",
       "name": "unimodal_results.json",
-      "contentUrl": "outputs/unimodal_results.json",
+      "contentUrl": "https://github.com/neurips26/UnifiedUnl/blob/main/outputs/unimodal_results.json",
       "encodingFormat": "application/json",
       "sha256": "fe3d3a4e95298038bda2d74eb9c02294acdcf86e73607d5323530d8bcca00a8d"
     },
@@ -66,7 +66,7 @@
       "@type": "cr:FileObject",
       "@id": "uqs_weights",
       "name": "uqs_weights.json",
-      "contentUrl": "outputs/uqs_weights.json",
+      "contentUrl": "https://github.com/neurips26/UnifiedUnl/blob/main/outputs/uqs_weights.json",
       "encodingFormat": "application/json",
       "sha256": "b355a743994bbd6382ca53ce237b420fc0d34f361ba6b3bceae077b6b021553b"
     },
@@ -74,7 +74,7 @@
       "@type": "cr:FileObject",
       "@id": "ranking_table",
       "name": "ranking_table.json",
-      "contentUrl": "outputs/ranking_table.json",
+      "contentUrl": https://github.com/neurips26/UnifiedUnl/blob/main/outputs/ranking_table.json",
       "encodingFormat": "application/json",
       "sha256": "2bf0c2ecd05248cfd2991baa2ab80542ae4122127deb20661c7a486b40a72686"
     },
@@ -82,7 +82,7 @@
       "@type": "cr:FileObject",
       "@id": "blip2_results",
       "name": "blip2_minimal_summary.json",
-      "contentUrl": "outputs/blip2_minimal_summary.json",
+      "contentUrl": "https://github.com/neurips26/UnifiedUnl/blob/main/outputs/blip2_minimal_summary.json",
       "encodingFormat": "application/json",
       "sha256": "34e83908b7f1962413383794eda81f17da78665583d80fdeba421f1269ca885a"
     },
@@ -90,7 +90,7 @@
       "@type": "cr:FileObject",
       "@id": "kr_pilot",
       "name": "kr_pilot_results.json",
-      "contentUrl": "outputs/kr_pilot_results.json",
+      "contentUrl": "https://github.com/neurips26/UnifiedUnl/blob/main/outputs/kr_pilot_results.json",
       "encodingFormat": "application/json",
       "sha256": "038739227ad19bf7d4fa9b20c73ddf1f26fd9e4d647e5702a4d6753dd5bdb41e"
     },
@@ -98,7 +98,7 @@
       "@type": "cr:FileObject",
       "@id": "analysis_results",
       "name": "analysis_results.json",
-      "contentUrl": "outputs/analysis_results.json",
+      "contentUrl": "https://github.com/neurips26/UnifiedUnl/blob/main/outputs/analysis_results.json",
       "encodingFormat": "application/json",
       "sha256": "67f578e686bc59156ef71bd2e9c0495212641aceb26e4206daf486f812512d93"
     }
