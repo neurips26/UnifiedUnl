@@ -18,7 +18,7 @@ Standard metrics for multimodal machine unlearning contradict each other. Output
 ## Core Insight
 
 <p align="center">
-  <img src="outputs/figures/fig1_tau_heatmap.pdf" width="500">
+  <img src="outputs/figures/fig1_tau_heatmap_page-0001.jpg" width="500">
 </p>
 
 Metrics form **two conflicting clusters**:
@@ -35,7 +35,7 @@ This leads to systematic contradictions:
 ## Contradiction Example
 
 <p align="center">
-  <img src="outputs/figures/fig2_contradiction.pdf" width="500">
+  <img src="outputs/figures/fig2_contradiction_page-0001.jpg" width="500">
 </p>
 
 The same method is ranked differently depending on the metric.
@@ -46,7 +46,7 @@ There is **no consistent best method under individual metrics**.
 ## Multimodal Amplifies the Problem
 
 <p align="center">
-  <img src="outputs/figures/fig3_modality.pdf" width="500">
+  <img src="outputs/figures/fig3_modality_page-0001.jpg" width="500">
 </p>
 
 Metric agreement is lower in multimodal settings:
@@ -59,7 +59,7 @@ Metric agreement is lower in multimodal settings:
 ## Metric Reliability
 
 <p align="center">
-  <img src="outputs/figures/fig4_uqs_weights.pdf" width="500">
+  <img src="outputs/figures/fig4_uqs_weights_page-0001.jpg" width="500">
 </p>
 
 * RA is most reliable (ρ ≈ 0.484)
@@ -71,7 +71,7 @@ Metric agreement is lower in multimodal settings:
 ## Unified Quality Score (UQS)
 
 <p align="center">
-  <img src="outputs/figures/fig5_uqs_stability.pdf" width="500">
+  <img src="outputs/figures/fig5_uqs_stability_page-0001.jpg" width="500">
 </p>
 
 UQS combines metrics using reliability weights:
