@@ -12,7 +12,7 @@
 
 Five standard metrics for evaluating multimodal machine unlearning **contradict each other** in a systematic and reproducible way.
 
-This repository provides a fully reproducible evaluation pipeline and benchmark. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate it in a pilot study (23/24 samples, 96% leakage), and introduce **UQS** — a data-driven composite score with reliability-weighted aggregation.
+This repository provides a fully reproducible evaluation pipeline. Output-based metrics (FA, RA, MIA) and oracle-alignment metrics (AD, JS) measure different objectives, producing inconsistent method rankings. We identify **Knowledge Recoverability (KR)** as the aspect missed by all five metrics, demonstrate it in a pilot study (23/24 samples, 96% leakage), and introduce **UQS** — a data-driven composite score with reliability-weighted aggregation.
 
 ---
 
@@ -66,7 +66,7 @@ Mean pairwise metric agreement (Kendall's τ) is lower in multimodal VQA than un
 | Unimodal CIFAR-10 | 0.158 |
 | Gap (Δ) | −0.072 |
 
-The image–text dual pathway creates additional dimensions that may amplify inter-metric divergence in single-pathway models.
+The image–text dual pathway creates additional dimensions that may amplify inter-metric divergence compared to single-pathway models.
 
 ---
 
@@ -128,7 +128,7 @@ UQS(M̂) = w₁·(1−FA) + w₂·RA + w₃·(1−MIA) + w₄·exp(−AD/100) + 
 
 Weights `wᵢ = max(ρᵢ, ε) / Σ max(ρⱼ, ε)` are derived via 5-fold cross-validated Spearman ρ with oracle M* — not hand-tuned. The reported values (w_RA=0.656, w_MIA=0.304, others=0.014) reflect the LLaVA-MMUBench setting; weights should be re-derived for different models or datasets.
 
-**Why not Borda count or voting?** Both assign equal weight to RA (p=0.003) and JS (p=0.766). Giving them equal vote ignores the data. Weighted average by empirical reliability is a data-driven aggregation based on observed metric performance — the data-driven aggregation is consistent with observed metric reliability.
+**Why not Borda count or voting?** Both assign equal weight to RA (p=0.003) and JS (p=0.766). Giving them equal vote ignores the data. Weighted average by empirical reliability is a data-driven aggregation based on observed metric reliability.
 
 **Stability:** τ = 0.647 ± 0.262 across 100 Dirichlet-sampled random weight perturbations — rankings are robust, not brittle.
 
