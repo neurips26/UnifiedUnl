@@ -1,7 +1,7 @@
 # Metric Unreliability in Multimodal Machine Unlearning
 ### A Systematic Analysis and Principled Unified Score
 
-[![CI](https://github.com/TODO/multimodal-unlearning-eval/actions/workflows/ci.yml/badge.svg)](https://github.com/TODO/multimodal-unlearning-eval/actions)
+[![CI](https://github.com/neurips26/UnifiedUnl/actions/workflows/ci.yml/badge.svg)](https://github.com/neurips26/UnifiedUnl/actions)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![NeurIPS 2026 D&B](https://img.shields.io/badge/NeurIPS_2026-Datasets_%26_Benchmarks-purple.svg)]()
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)]()
