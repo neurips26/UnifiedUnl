@@ -1,0 +1,11 @@
+{
+  "dataset": "mllmu_bench",
+  "method": "salun",
+  "seed": 5508,
+  "FA": 0.0,
+  "RA": 0.02,
+  "MIA": 0.48,
+  "AD": 63.6875,
+  "JS": 0.02592783421278,
+  "retrained_distance": 0.36567102614138447
+}

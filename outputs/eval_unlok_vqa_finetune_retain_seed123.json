@@ -1,0 +1,11 @@
+{
+  "dataset": "unlok_vqa",
+  "method": "finetune_retain",
+  "seed": 123,
+  "FA": 1.0,
+  "RA": 1.0,
+  "MIA": 0.0,
+  "AD": 123.3125,
+  "JS": 0.4184647798538208,
+  "retrained_distance": 0.04977431266807006
+}

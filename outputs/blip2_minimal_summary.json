@@ -1,0 +1,39 @@
+{
+  "blip2_results": [
+    {
+      "model": "blip2",
+      "dataset": "mmubench",
+      "method": "gradient_ascent",
+      "seed": 42,
+      "FA": 0.6666666666666666,
+      "RA": 0.6,
+      "AD": 1.869140625,
+      "retrained_distance": 0.03396741426331573
+    },
+    {
+      "model": "blip2",
+      "dataset": "mmubench",
+      "method": "finetune_retain",
+      "seed": 42,
+      "FA": 0.6666666666666666,
+      "RA": 0.63,
+      "AD": 44.84375,
+      "retrained_distance": 0.12192832531582098
+    }
+  ],
+  "blip2_tau": {
+    "FA_RA": null,
+    "FA_AD": null,
+    "RA_AD": -1.0,
+    "primary_pair": "RA,AD (FA tied)",
+    "primary_tau": -1.0
+  },
+  "llava_tau_reference": {
+    "FA_RA": 0.85,
+    "FA_AD": -0.26,
+    "RA_AD": -0.11
+  },
+  "contradiction_replicated": true,
+  "fa_tied": true,
+  "note": "2-method minimal validation on MMUBench. \u03c4(FA,AD) undefined if both methods tied on FA (identical scores). In that case \u03c4(RA,AD) is the primary contradiction signal. Primary signal: \u03c4(RA,AD (FA tied)) = -1.0. Contradiction confirmed: output-surface (RA) vs oracle-alignment (AD) disagree."
+}

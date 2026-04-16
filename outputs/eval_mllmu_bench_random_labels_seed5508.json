@@ -1,0 +1,11 @@
+{
+  "dataset": "mllmu_bench",
+  "method": "random_labels",
+  "seed": 5508,
+  "FA": 0.0,
+  "RA": 0.02,
+  "MIA": 0.48,
+  "AD": 17.140625,
+  "JS": 0.016590027138590813,
+  "retrained_distance": 0.05451001902325268
+}

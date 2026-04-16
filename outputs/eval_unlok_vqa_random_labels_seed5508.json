@@ -1,0 +1,11 @@
+{
+  "dataset": "unlok_vqa",
+  "method": "random_labels",
+  "seed": 5508,
+  "FA": 1.0,
+  "RA": 1.0,
+  "MIA": 0.0,
+  "AD": 76.4375,
+  "JS": 0.09221617132425308,
+  "retrained_distance": 0.020616961306931785
+}

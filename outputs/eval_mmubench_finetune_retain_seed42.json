@@ -1,0 +1,11 @@
+{
+  "dataset": "mmubench",
+  "method": "finetune_retain",
+  "seed": 42,
+  "FA": 0.8666666666666667,
+  "RA": 0.72,
+  "MIA": 0.5333333333333333,
+  "AD": 112.5,
+  "JS": 0.05320321395993233,
+  "retrained_distance": 0.04310239544807218
+}

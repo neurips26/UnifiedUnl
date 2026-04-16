@@ -1,0 +1,242 @@
+[
+  {
+    "sample_id": 0,
+    "question": "Which solution has a higher concentration of pink particles?",
+    "answer": "C",
+    "direct_prediction": "Solution A has a higher concentration of pink particles compared to Solution B. This means that the Solution A has a higher probability of causing an allergic reaction when it comes into contact with the skin or other surfaces. The higher concentration of pink",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 1,
+    "question": "What is correct Python code to generate the content of the image?",
+    "answer": "D",
+    "direct_prediction": "To generate the content of the image, you can use the following Python code:\n```python\nimport numpy as np\nfrom PIL import Image\n\n# Load the image\nimage = Image.open('image.jpg')\n\n#",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 2,
+    "question": "Which term matches the picture?",
+    "answer": "B",
+    "direct_prediction": "GIFT",
+    "direct_correct": false,
+    "option_map": {}
+  },
+  {
+    "sample_id": 3,
+    "question": "Which of the following could Ernesto's test show?",
+    "answer": "A",
+    "direct_prediction": "Ernesto's test could show that the person has a higher risk of developing heart disease due to their family history of heart disease. This information could help the person take preventive measures, such as maintaining a healthy lifestyle, regular",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 4,
+    "question": "Based on the table, what did Ruth Handler invent?",
+    "answer": "B",
+    "direct_prediction": "Ruth Handler invented the Rubik's Cube, which is a popular puzzle toy. The Rubik's Cube consists of a 3D crossword puzzle that can be manipulated by rotating its six faces",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 5,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "D",
+    "direct_prediction": "The correct caption for this image is:\n\n\"A group of three different sized bowls, one of which is a cake, are placed on a table. The table is surrounded by three people, one of whom is a dog",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 6,
+    "question": "What will happen next?",
+    "answer": "C",
+    "direct_prediction": "In the next scene, the person in the image will likely continue with their daily routine or engage in a conversation with someone else. The image captures the essence of the person's life, and the viewer can expect the person to",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 7,
+    "question": "Which rhetorical appeal is primarily used in this ad?",
+    "answer": "C",
+    "direct_prediction": "The primary rhetorical appeal used in this ad is the use of emotional appeals. The advertisement showcases the benefits of the product, such as the Fortune 500 companies trusting the company, and the positive",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 8,
+    "question": "Based on the timeline, which statement is true?",
+    "answer": "A",
+    "direct_prediction": "The statement \"The Boston Tea Party took place on July 4, 1776\" is true.",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 9,
+    "question": "The object shown in this figure:",
+    "answer": "A",
+    "direct_prediction": "The image depicts a group of people standing in front of a large body of water. They are enjoying the view and taking in the beauty of the surroundings. The scene is set in a picturesque location, with the water serving",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 10,
+    "question": "Does this passage describe the weather or the climate?",
+    "answer": "A",
+    "direct_prediction": "The passage describes the weather.",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 11,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "C",
+    "direct_prediction": "This is a delicious and nutritious meal, consisting of a variety of flavors and textures. The dish is made up of ingredients such as eggs, cheese, and vegetables, all combined to create a mouth",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 12,
+    "question": "Which solution has a higher concentration of purple particles?",
+    "answer": "A",
+    "direct_prediction": "Solution A has a higher concentration of purple particles compared to Solution B. This means that the solution with a higher concentration of purple particles is more likely to have a stronger effect on the target. In this case, Solution A is the solution with",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 13,
+    "question": "The object shown in this figure:",
+    "answer": "C",
+    "direct_prediction": "The image shows a group of people standing in front of a building. There are a total of 11 people in the scene, with some standing closer to the building and others further away. The group appears to be enjoying a day outdo",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 14,
+    "question": "What will happen next?",
+    "answer": "C",
+    "direct_prediction": "In the image, a fire hydrant is located near the center of the scene. The fire hydrant is an essential component of urban infrastructure, providing water supply for firefighting purposes. It is crucial for the city's safety",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 15,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "A",
+    "direct_prediction": "The correct caption for this image is:\n\n\"A person walks through the city, enjoying the sights and sounds of the urban landscape. The city's vibrant atmosphere is a testament to the diverse cultures and",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 16,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "C",
+    "direct_prediction": "This is a picture of a person who is enjoying a delicious meal. The meal consists of a sandwich and a drink. The person is enjoying the meal in a comfortable setting. The image is taken in the year",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 17,
+    "question": "Which term matches the picture?",
+    "answer": "A",
+    "direct_prediction": "GIF",
+    "direct_correct": false,
+    "option_map": {}
+  },
+  {
+    "sample_id": 18,
+    "question": "Are the two apples in the picture the same color?",
+    "answer": "B",
+    "direct_prediction": "No, the two apples in the picture are different colors. One is red, and the other is green.",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 19,
+    "question": "In this comparison picture, are the left and right modules the same color?",
+    "answer": "B",
+    "direct_prediction": "Yes, the left and right modules are the same color in this comparison picture.",
+    "direct_correct": false,
+    "option_map": {}
+  },
+  {
+    "sample_id": 20,
+    "question": "What is correct Python code to generate the content of the image?",
+    "answer": "A",
+    "direct_prediction": "To generate the content of the image, you can use the following Python code:\n```python\nimport numpy as np\nfrom PIL import Image\n\n# Load the image\nimage = Image.open('image.jpg')\n\n#",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 21,
+    "question": "Which of the following could Laura and Isabella's test show?",
+    "answer": "B",
+    "direct_prediction": "Laura and Isabella's test could show the effectiveness of the vaccine in preventing the disease. By measuring the antibody levels in the blood, the test can determine the immune response to the vaccine and assess",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 22,
+    "question": "The object shown in this figure:",
+    "answer": "B",
+    "direct_prediction": "The most common and preferred method of consuming food is through the mouth. This involves the process of chewing and swallowing food, which is essential for maintaining good health. The mouth is the primary point of entry for food, and it",
+    "direct_correct": false,
+    "option_map": {}
+  },
+  {
+    "sample_id": 23,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "D",
+    "direct_prediction": "The correct caption for this image is:\n\n\"A group of people are enjo\", which means \"A group of people are enjoying\", in this case, the image of the group of people enjoying the group of people enjoying the",
+    "direct_correct": false,
+    "option_map": {}
+  },
+  {
+    "sample_id": 24,
+    "question": "What the nature relations of these animals",
+    "answer": "A",
+    "direct_prediction": "The nature relations between these animals involve the interaction between the rabbit, which is a herbivore, and the wolf, which is a carnivore. The rabbit grazes on grass and other vegetation, while the w",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 25,
+    "question": "Why might feeding offspring during mouthbrooding increase the reproductive success of a female blunthead cichlid? Complete the claim below that answers this question and is best supported by the passage.\nFeeding offspring during mouthbrooding increases the chances that ().",
+    "answer": "B",
+    "direct_prediction": "Feeding offspring during mouthbrooding increases the chances that the female blunthead cichlid will successfully reproduce and reproduce more effectively. This is because the female is able to provide proper nutrition and care to her offspring,",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 26,
+    "question": "What is correct Python code to generate the content of the image?",
+    "answer": "B",
+    "direct_prediction": "To generate the content of the image using Python, you can use the `PIL` library, which provides a convenient way to access image data. Here's an example of how to do this:\n```python\nfrom PIL import Image",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 27,
+    "question": "What will happen next?",
+    "answer": "C",
+    "direct_prediction": "In the image, a person is standing on the shore, and there is a boat in the water. The scene suggests that the person might be preparing to board the boat or has just disembarked from it. The boat's presence",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 28,
+    "question": "which image is more colorful?",
+    "answer": "B",
+    "direct_prediction": "The image that is more colorful is the one that contains the most information about the product, such as the image of the fruit itself. In this case, the image of the fruit itself is the most colorful, as it contains the most information",
+    "direct_correct": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 29,
+    "question": "Identify the question that Carson's experiment can best answer.",
+    "answer": "B",
+    "direct_prediction": "What is the most effective way to prevent the spread of a disease?",
+    "direct_correct": false,
+    "option_map": {}
+  }
+]

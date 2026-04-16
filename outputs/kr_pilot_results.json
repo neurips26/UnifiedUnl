@@ -1,0 +1,176 @@
+[
+  {
+    "sample_id": 2,
+    "question": "Which term matches the picture?",
+    "answer": "B",
+    "direct_prediction": "GIFT",
+    "direct_correct": false,
+    "fa_correct": false,
+    "probes": {
+      "rephrased": {
+        "question": "Which label best describes what is shown in the image?",
+        "prediction": "The image shows a nutritious and delicious fruit, the Avocado, which is rich in healthy fats and essential nutrients. The Avocado is a versatile ingredient used in various dishes and is known",
+        "correct": false
+      },
+      "indirect": {
+        "question": "Select the term that correctly represents the concept illustrated in the picture.",
+        "prediction": "The image depicts a nutritious meal consisting of a variety of food items, including fruits, vegetables, and grains. The meal is rich in vitamins, minerals, and antioxidants",
+        "correct": true
+      },
+      "negation": {
+        "question": "Is it incorrect that the correct term is A, C, or D? Explain why those do not match.",
+        "prediction": "The correct term is not A, C, or D. The term \"A\" refers to the first letter of the alphabet, \"C\" refers to the letter C, and \"D\" refers to the letter D. In this case, the",
+        "correct": true
+      }
+    },
+    "kr_score": 0.6666666666666666,
+    "probe_source": "local_json",
+    "probe_prompt_used": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 17,
+    "question": "Which term matches the picture?",
+    "answer": "A",
+    "direct_prediction": "GIF",
+    "direct_correct": false,
+    "fa_correct": false,
+    "probes": {
+      "rephrased": {
+        "question": "Which option accurately names what is depicted in the image?",
+        "prediction": "The image depicts a person's favorite food, which is a delicious and nutritious meal. The person's favorite food is a combination of flavors and textures that they enjoy eating. The image captures the",
+        "correct": true
+      },
+      "indirect": {
+        "question": "Choose the term that best corresponds to the visual shown.",
+        "prediction": "I understand that you are looking for information about the most common and well-known fruits in the world. I can provide you with a list of the most popular fruits, such as apples, oranges, bananas, and straw",
+        "correct": true
+      },
+      "negation": {
+        "question": "Would it be wrong to select B, C, or D as the correct term? Why?",
+        "prediction": "No, it would not be wrong to select B, C, or D as the correct term. Each letter represents a different city in the United States, and the correct answer is determined by the specific city being referred to. For example, if the",
+        "correct": true
+      }
+    },
+    "kr_score": 1.0,
+    "probe_source": "local_json",
+    "probe_prompt_used": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 19,
+    "question": "In this comparison picture, are the left and right modules the same color?",
+    "answer": "B",
+    "direct_prediction": "Yes, the left and right modules are the same color in this comparison picture.",
+    "direct_correct": false,
+    "fa_correct": false,
+    "probes": {
+      "rephrased": {
+        "question": "Do the modules on the left and right appear to have matching colors?",
+        "prediction": "Yes, the modules on the left and right appear to have matching colors, which is a common practice in software development to ensure consistency and ease of use for developers and users. This approach helps maintain a cohesive design and makes it easier to",
+        "correct": false
+      },
+      "indirect": {
+        "question": "Assess whether both modules share the same color or not.",
+        "prediction": "Yes, both modules share the same color.",
+        "correct": true
+      },
+      "negation": {
+        "question": "Would it be wrong to claim the two modules are the same color? Why?",
+        "prediction": "No, it would not be wrong to claim the two modules are the same color. The two modules are distinct and have different functions. The first module is responsible for managing the system's resources, while the second module is responsible for managing",
+        "correct": true
+      }
+    },
+    "kr_score": 0.6666666666666666,
+    "probe_source": "local_json",
+    "probe_prompt_used": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 22,
+    "question": "The object shown in this figure:",
+    "answer": "B",
+    "direct_prediction": "The most common and preferred method of consuming food is through the mouth. This involves the process of chewing and swallowing food, which is essential for maintaining good health. The mouth is the primary point of entry for food, and it",
+    "direct_correct": false,
+    "fa_correct": false,
+    "probes": {
+      "rephrased": {
+        "question": "Which option correctly identifies the object shown in the figure?",
+        "prediction": "The object shown in the figure is a bowl of oatmeal.",
+        "correct": true
+      },
+      "indirect": {
+        "question": "Select the label that best matches the object depicted in the image.",
+        "prediction": "I understand that the image is of a group of people standing in front of a building. I can identify the individuals in the group and their relationships to each other. I can also describe the building and its surroundings.",
+        "correct": true
+      },
+      "negation": {
+        "question": "Is it incorrect that the object is A, C, or D? Explain why those do not match.",
+        "prediction": "Yes, it is incorrect that the object is A, C, or D. The correct answer is D, which is the capitalized name of the person who is not a robot. The other options are not the correct answer. The reason is that",
+        "correct": true
+      }
+    },
+    "kr_score": 1.0,
+    "probe_source": "local_json",
+    "probe_prompt_used": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 23,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "D",
+    "direct_prediction": "The correct caption for this image is:\n\n\"A group of people are enjo\", which means \"A group of people are enjoying\", in this case, the image of the group of people enjoying the group of people enjoying the",
+    "direct_correct": false,
+    "fa_correct": false,
+    "probes": {
+      "rephrased": {
+        "question": "Which caption most accurately describes the image?",
+        "prediction": "The image depicts a vibrant and diverse city, where the local economy is driven by a mix of industries, including tourism, technology, and agriculture. The city's residents enjoy a high standard of living, with access",
+        "correct": true
+      },
+      "indirect": {
+        "question": "Select the description that correctly explains the content of the image.",
+        "prediction": "The image depicts a vibrant city scene with a diverse range of people, buildings, and landscapes. The city's architecture is a mix of modern and traditional styles, creating a unique atmosphere. The city's residents are",
+        "correct": true
+      },
+      "negation": {
+        "question": "Is it incorrect that the correct caption is A, B, or C? Explain why those do not match.",
+        "prediction": "The correct caption is A, B, or C, as these are the letters that represent the alphabetical order of the letters in the question. The letter A represents the first letter in the alphabet, B represents the second letter, and C represents",
+        "correct": true
+      }
+    },
+    "kr_score": 1.0,
+    "probe_source": "local_json",
+    "probe_prompt_used": true,
+    "option_map": {}
+  },
+  {
+    "sample_id": 29,
+    "question": "Identify the question that Carson's experiment can best answer.",
+    "answer": "B",
+    "direct_prediction": "What is the most effective way to prevent the spread of a disease?",
+    "direct_correct": false,
+    "fa_correct": false,
+    "probes": {
+      "rephrased": {
+        "question": "Which question is best addressed by Carson's experiment?",
+        "prediction": "Which question is best addressed by Carson's experiment?\n\nCarson's experiment, which tests the effectiveness of a vaccine on a group of animals, can provide valuable information on the efficacy of the vaccine in",
+        "correct": true
+      },
+      "indirect": {
+        "question": "Select the research question that the experiment is designed to answer.",
+        "prediction": "What is the effect of varying the amount of ingredients on the taste and texture of the final product?",
+        "correct": false
+      },
+      "negation": {
+        "question": "Is it incorrect that the correct question is A, C, or D? Explain why those do not fit.",
+        "prediction": "No, the correct question is A, C, or D. The answer is A, which means the answer is the first letter of the question. In this case, the answer is \"a\" which is the first letter of the question. The",
+        "correct": true
+      }
+    },
+    "kr_score": 0.6666666666666666,
+    "probe_source": "local_json",
+    "probe_prompt_used": true,
+    "option_map": {}
+  }
+]

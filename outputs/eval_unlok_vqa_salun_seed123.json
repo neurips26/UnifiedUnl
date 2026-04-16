@@ -1,0 +1,11 @@
+{
+  "dataset": "unlok_vqa",
+  "method": "salun",
+  "seed": 123,
+  "FA": 1.0,
+  "RA": 1.0,
+  "MIA": 0.0,
+  "AD": 68.125,
+  "JS": 0.17948071658611298,
+  "retrained_distance": 0.35111414344765207
+}

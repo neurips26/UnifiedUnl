@@ -1,0 +1,23 @@
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Knowledge Recoverability (KR) pilot.}
+Only samples that fail the direct query in the initial FA scan are probed.
+FA$=0$ indicates the unlearned model fails the direct question at KR time.
+KR$>0$ indicates the forgotten information is recovered via a
+rephrased, indirect, or negation probe, despite FA$=0$.}
+\label{tab:kr_pilot}
+\small
+\begin{tabular}{p{5cm}p{1.5cm}cc p{2cm}}
+\toprule
+\textbf{Original Question} & \textbf{Answer} & \textbf{FA} & \textbf{KR} & \textbf{Verdict} \\
+\midrule
+  Which term matches the picture? & B & 0 & 0.67 & \textbf{leaks} \\
+  Which term matches the picture? & A & 0 & 1.00 & \textbf{leaks} \\
+  In this comparison picture, are the left a... & B & 0 & 0.67 & \textbf{leaks} \\
+  The object shown in this figure: & B & 0 & 1.00 & \textbf{leaks} \\
+  Which one is the correct caption of this i... & D & 0 & 1.00 & \textbf{leaks} \\
+  Identify the question that Carson's experi... & B & 0 & 0.67 & \textbf{leaks} \\
+\bottomrule
+\end{tabular}
+\end{table}

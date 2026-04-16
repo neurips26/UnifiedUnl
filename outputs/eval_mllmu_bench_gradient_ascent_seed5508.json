@@ -1,0 +1,11 @@
+{
+  "dataset": "mllmu_bench",
+  "method": "gradient_ascent",
+  "seed": 5508,
+  "FA": 0.0,
+  "RA": 0.02,
+  "MIA": 0.32,
+  "AD": 114.875,
+  "JS": 0.02498531900346279,
+  "retrained_distance": 0.05395285986727498
+}

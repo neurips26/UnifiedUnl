@@ -1,0 +1,10 @@
+{
+  "model": "blip2",
+  "dataset": "mmubench",
+  "method": "gradient_ascent",
+  "seed": 42,
+  "FA": 0.6666666666666666,
+  "RA": 0.6,
+  "AD": 1.869140625,
+  "retrained_distance": 0.03396741426331573
+}

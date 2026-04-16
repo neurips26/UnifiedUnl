@@ -1,0 +1,11 @@
+{
+  "dataset": "unlok_vqa",
+  "method": "gradient_ascent",
+  "seed": 123,
+  "FA": 1.0,
+  "RA": 1.0,
+  "MIA": 0.0,
+  "AD": 187.125,
+  "JS": 0.3817932903766632,
+  "retrained_distance": 0.017658556049988085
+}

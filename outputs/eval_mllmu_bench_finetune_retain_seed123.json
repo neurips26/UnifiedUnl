@@ -1,0 +1,11 @@
+{
+  "dataset": "mllmu_bench",
+  "method": "finetune_retain",
+  "seed": 123,
+  "FA": 0.0,
+  "RA": 0.02,
+  "MIA": 0.52,
+  "AD": 26.046875,
+  "JS": 0.0024794333148747683,
+  "retrained_distance": 0.06135254610556265
+}

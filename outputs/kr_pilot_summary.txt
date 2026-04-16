@@ -1,0 +1,10 @@
+\paragraph{Knowledge Recoverability pilot.}
+We first scan the full forget set using the original query and retain only samples
+for which the unlearned model fails the direct question. We then probe this
+FA$=0$ subset with three fixed alternative queries constructed prior to evaluation:
+one rephrased query, one indirect semantic query, and one negation-based query.
+Among 6 samples that still satisfy FA$=0$ at KR time, 6
+(100\%) reveal the forgotten answer via
+at least one alternative probe. Mean KR score among FA$=0$ samples is
+0.833 (0$=$fully erased, 1$=$fully recoverable). This shows that
+failure on the direct query does not imply true knowledge erasure.
