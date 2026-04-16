@@ -1,0 +1,344 @@
+"""
+benchmark/leaderboard.py
+========================
+Generates a self-contained interactive HTML leaderboard for the benchmark.
+Reviewers can sort by any metric, see UQS ranking, and view all raw scores.
+
+Usage:
+    from benchmark.leaderboard import generate_leaderboard_html
+    generate_leaderboard_html(mean_results, ranking_table, weights,
+                              save_path="outputs/leaderboard.html")
+"""
+
+import os
+import json
+from typing import Dict
+from utils import get_logger
+import config
+
+logger = get_logger("leaderboard")
+
+
+HTML_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multimodal Unlearning Benchmark — Metric Consistency Leaderboard</title>
+<style>
+  :root {{
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2d3148;
+    --accent: #5b6af0;
+    --accent2: #e05c7e;
+    --text: #e8eaf6;
+    --muted: #8892b0;
+    --green: #43c59e;
+    --red: #e05c7e;
+    --orange: #f0a050;
+  }}
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{ background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; padding: 2rem; }}
+  h1 {{ font-size: 1.7rem; font-weight: 700; margin-bottom: .4rem; }}
+  .subtitle {{ color: var(--muted); font-size: .95rem; margin-bottom: 2rem; }}
+  .subtitle a {{ color: var(--accent); text-decoration: none; }}
+  .subtitle a:hover {{ text-decoration: underline; }}
+
+  .cards {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem; }}
+  .card {{ background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; }}
+  .card-label {{ color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .3rem; }}
+  .card-val {{ font-size: 1.6rem; font-weight: 700; }}
+  .card-sub {{ color: var(--muted); font-size: .82rem; margin-top: .2rem; }}
+
+  .section-title {{ font-size: 1.1rem; font-weight: 600; margin-bottom: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }}
+
+  .table-wrap {{ overflow-x: auto; margin-bottom: 2.5rem; }}
+  table {{ width: 100%; border-collapse: collapse; font-size: .9rem; }}
+  th {{ background: var(--surface); color: var(--muted); text-align: left; padding: .7rem 1rem; border-bottom: 2px solid var(--border); cursor: pointer; user-select: none; white-space: nowrap; }}
+  th:hover {{ color: var(--text); }}
+  th .sort-icon {{ margin-left: .3rem; opacity: .4; }}
+  th.sorted .sort-icon {{ opacity: 1; color: var(--accent); }}
+  td {{ padding: .65rem 1rem; border-bottom: 1px solid var(--border); }}
+  tr:hover td {{ background: rgba(91,106,240,.07); }}
+  tr:last-child td {{ border-bottom: none; }}
+
+  .rank-badge {{ display: inline-block; width: 1.6rem; height: 1.6rem; border-radius: 50%; text-align: center; line-height: 1.6rem; font-weight: 700; font-size: .8rem; }}
+  .rank-1 {{ background: #ffd700; color: #000; }}
+  .rank-2 {{ background: #c0c0c0; color: #000; }}
+  .rank-3 {{ background: #cd7f32; color: #fff; }}
+  .rank-n {{ background: var(--border); color: var(--text); }}
+
+  .method-tag {{ display: inline-block; padding: .2rem .7rem; border-radius: 20px; font-size: .82rem; font-weight: 600; }}
+  .tag-ga {{ background: rgba(224,92,126,.15); color: #e05c7e; border: 1px solid rgba(224,92,126,.3); }}
+  .tag-rl {{ background: rgba(91,106,240,.15); color: #8b9cf7; border: 1px solid rgba(91,106,240,.3); }}
+  .tag-ft {{ background: rgba(67,197,158,.15); color: #43c59e; border: 1px solid rgba(67,197,158,.3); }}
+  .tag-su {{ background: rgba(240,160,80,.15); color: #f0a050; border: 1px solid rgba(240,160,80,.3); }}
+
+  .metric-val {{ font-family: 'Cascadia Code', 'Consolas', monospace; }}
+  .best {{ color: var(--green); font-weight: 700; }}
+  .worst {{ color: var(--red); }}
+
+  .bar-wrap {{ display: flex; align-items: center; gap: .5rem; }}
+  .bar {{ height: 8px; border-radius: 4px; background: var(--accent); min-width: 2px; }}
+
+  .contradiction-box {{ background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-bottom: 2.5rem; }}
+  .rank-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: .7rem; margin-top: 1rem; }}
+  .rank-cell {{ background: var(--bg); border-radius: 8px; padding: .8rem; }}
+  .rank-cell-method {{ font-size: .82rem; color: var(--muted); margin-bottom: .3rem; }}
+  .rank-cell-ranks {{ font-size: .9rem; }}
+  .rank-diff {{ font-size: .78rem; color: var(--orange); margin-top: .2rem; }}
+
+  .weights-section {{ display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }}
+  .weight-item {{ background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .8rem 1.2rem; flex: 1; min-width: 120px; }}
+  .weight-metric {{ font-size: .8rem; color: var(--muted); }}
+  .weight-val {{ font-size: 1.3rem; font-weight: 700; color: var(--accent); }}
+  .weight-bar-bg {{ background: var(--bg); border-radius: 4px; height: 6px; margin-top: .4rem; }}
+  .weight-bar {{ height: 6px; border-radius: 4px; background: var(--accent); }}
+
+  footer {{ color: var(--muted); font-size: .82rem; border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem; }}
+</style>
+</head>
+<body>
+
+<h1>🏆 Multimodal Unlearning Benchmark</h1>
+<p class="subtitle">
+  Metric Consistency Evaluation — NeurIPS 2026 Datasets &amp; Benchmarks Track &nbsp;|&nbsp;
+  LLaVA-1.5-7B + LoRA &nbsp;|&nbsp;
+  3 VQA Datasets × 4 Methods × 5 Metrics
+</p>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-label">Methods Evaluated</div>
+    <div class="card-val">4</div>
+    <div class="card-sub">GA · RL · FT-Retain · SalUn</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Metrics</div>
+    <div class="card-val">5</div>
+    <div class="card-sub">FA · RA · MIA · AD · JS</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Datasets</div>
+    <div class="card-val">3</div>
+    <div class="card-sub">MLLMU-Bench · UnLOK-VQA · MMUBench</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Seeds</div>
+    <div class="card-val">3</div>
+    <div class="card-sub">42 · 123 · 5508</div>
+  </div>
+</div>
+
+<!-- UQS Weights -->
+<div class="section-title">Derived UQS Weights (from Spearman correlation with retrained model)</div>
+<div class="weights-section" id="weights-section"></div>
+
+<!-- Leaderboard Table -->
+<div class="section-title">Leaderboard — Click column header to sort</div>
+<div class="table-wrap">
+<table id="leaderboard-table">
+  <thead>
+    <tr>
+      <th onclick="sortTable('UQS_rank', true)">Rank <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('method', false)">Method <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('UQS', true)">UQS ↑ <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('FA', true)">FA ↓ <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('RA', false)">RA ↑ <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('MIA', true)">MIA ↓ <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('AD', true)">AD ↓ <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('JS', true)">JS ↓ <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('FA_rank', true)">FA Rank <span class="sort-icon">▼</span></th>
+      <th onclick="sortTable('RA_rank', true)">RA Rank <span class="sort-icon">▼</span></th>
+    </tr>
+  </thead>
+  <tbody id="leaderboard-body"></tbody>
+</table>
+</div>
+
+<!-- Contradiction box -->
+<div class="section-title">The Contradiction — same method, different metric = different rank</div>
+<div class="contradiction-box">
+  <p style="color:var(--muted); font-size:.9rem; margin-bottom:.5rem;">
+    Columns show each method's rank (1=best) under each individual metric.
+    A large spread across columns means metrics <em>contradict</em> each other.
+    <strong style="color:var(--accent)">UQS resolves this with a principled composite score.</strong>
+  </p>
+  <div class="rank-grid" id="contradiction-grid"></div>
+</div>
+
+<!-- Raw data JSON (hidden, used by JS) -->
+<script id="raw-data" type="application/json">
+__RAW_DATA__
+</script>
+<script id="weights-data" type="application/json">
+__WEIGHTS_DATA__
+</script>
+
+<script>
+const rawData = JSON.parse(document.getElementById('raw-data').textContent);
+const weights = JSON.parse(document.getElementById('weights-data').textContent);
+
+const METRICS = ['FA','RA','MIA','AD','JS'];
+const LOWER_BETTER = new Set(['FA','MIA','AD','JS']);
+const TAGS = {
+  gradient_ascent: 'tag-ga',
+  random_labels:   'tag-rl',
+  finetune_retain: 'tag-ft',
+  salun:           'tag-su',
+};
+const LABELS = {
+  gradient_ascent: 'Gradient Ascent',
+  random_labels:   'Random Labels',
+  finetune_retain: 'FT-Retain',
+  salun:           'SalUn',
+};
+
+let sortCol = 'UQS_rank';
+let sortAsc = true;
+
+function fmt(v) { return typeof v === 'number' ? v.toFixed(4) : v; }
+
+function getBest(col) {
+  const vals = rawData.map(r => r[col]).filter(v => typeof v === 'number');
+  return LOWER_BETTER.has(col) ? Math.min(...vals) : Math.max(...vals);
+}
+
+function sortTable(col, asc) {
+  sortCol = col;
+  sortAsc = asc;
+  renderTable();
+  document.querySelectorAll('th').forEach(th => th.classList.remove('sorted'));
+  event.currentTarget.classList.add('sorted');
+}
+
+function rankBadge(rank) {
+  const cls = rank <= 3 ? `rank-${rank}` : 'rank-n';
+  return `<span class="rank-badge ${cls}">${rank}</span>`;
+}
+
+function renderTable() {
+  const sorted = [...rawData].sort((a, b) => {
+    const av = a[sortCol], bv = b[sortCol];
+    if (typeof av === 'number') return sortAsc ? av - bv : bv - av;
+    return sortAsc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+  });
+
+  const bestFA = getBest('FA'), bestRA = getBest('RA'),
+        bestMIA = getBest('MIA'), bestAD = getBest('AD'),
+        bestJS  = getBest('JS'), bestUQS = getBest('UQS');
+
+  const tbody = document.getElementById('leaderboard-body');
+  tbody.innerHTML = sorted.map(row => {
+    const tag = TAGS[row.method] || '';
+    const label = LABELS[row.method] || row.method;
+
+    function cell(col, v) {
+      const best = getBest(col);
+      const isBest = typeof v === 'number' && Math.abs(v - best) < 1e-6;
+      const cls = isBest ? 'best' : '';
+      return `<td class="metric-val ${cls}">${fmt(v)}</td>`;
+    }
+
+    return `
+    <tr>
+      <td>${rankBadge(row.UQS_rank)}</td>
+      <td><span class="method-tag ${tag}">${label}</span></td>
+      ${cell('UQS', row.UQS)}
+      ${cell('FA',  row.FA)}
+      ${cell('RA',  row.RA)}
+      ${cell('MIA', row.MIA)}
+      ${cell('AD',  row.AD)}
+      ${cell('JS',  row.JS)}
+      <td><span class="rank-badge ${row.FA_rank <= 3 ? `rank-${row.FA_rank}` : 'rank-n'}">${row.FA_rank}</span></td>
+      <td><span class="rank-badge ${row.RA_rank <= 3 ? `rank-${row.RA_rank}` : 'rank-n'}">${row.RA_rank}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderWeights() {
+  const maxW = Math.max(...Object.values(weights));
+  const html = Object.entries(weights).map(([m, w]) => `
+    <div class="weight-item">
+      <div class="weight-metric">${m} ${LOWER_BETTER.has(m) ? '↓' : '↑'}</div>
+      <div class="weight-val">${w.toFixed(3)}</div>
+      <div class="weight-bar-bg"><div class="weight-bar" style="width:${(w/maxW*100).toFixed(1)}%"></div></div>
+    </div>`).join('');
+  document.getElementById('weights-section').innerHTML = html;
+}
+
+function renderContradiction() {
+  const grid = document.getElementById('contradiction-grid');
+  grid.innerHTML = rawData.map(row => {
+    const ranks = METRICS.map(m => row[`${m}_rank`]);
+    const spread = Math.max(...ranks) - Math.min(...ranks);
+    const label = LABELS[row.method] || row.method;
+    const rankStr = METRICS.map(m => `${m}:#${row[`${m}_rank`]}`).join('  ');
+    return `
+    <div class="rank-cell">
+      <div class="rank-cell-method">${label}</div>
+      <div class="rank-cell-ranks" style="font-size:.8rem; color:var(--muted); line-height:1.8">
+        ${METRICS.map(m => `<span style="margin-right:.5rem">${m} <strong style="color:var(--text)">#${row[`${m}_rank`]}</strong></span>`).join('')}
+      </div>
+      <div class="rank-diff">Rank spread: ${spread} ${spread >= 2 ? '⚡ contradiction' : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+renderWeights();
+renderTable();
+renderContradiction();
+</script>
+
+<footer>
+  Generated by benchmark/leaderboard.py &nbsp;·&nbsp;
+  NeurIPS 2026 Datasets &amp; Benchmarks Track &nbsp;·&nbsp;
+  Code: <a href="https://github.com/TODO/multimodal-unlearning-eval" style="color:var(--accent)">GitHub</a>
+</footer>
+</body>
+</html>"""
+
+
+def generate_leaderboard_html(
+    mean_results: Dict[str, Dict[str, float]],
+    ranking_table: Dict,
+    weights: Dict[str, float],
+    save_path: str = None,
+) -> str:
+    """
+    Build a flat list of per-method records merging mean_results + ranking_table,
+    then inject into the HTML template.
+    """
+    from evaluation.uqs import compute_uqs
+
+    rows = []
+    for method in config.METHODS:
+        scores = mean_results.get(method, {})
+        rtable = ranking_table.get(method, {})
+        uqs    = compute_uqs(scores, weights)
+        row = {
+            "method":   method,
+            "UQS":      round(uqs, 4),
+            "UQS_rank": rtable.get("UQS_rank", 0),
+        }
+        for m in config.METRIC_NAMES:
+            row[m]            = round(scores.get(m, 0.0), 4)
+            row[f"{m}_rank"]  = rtable.get(f"{m}_rank", 0)
+        rows.append(row)
+
+    # Sort by UQS descending by default
+    rows.sort(key=lambda r: r["UQS"], reverse=True)
+
+    html = HTML_TEMPLATE.replace(
+        "__RAW_DATA__",    json.dumps(rows,    indent=2)
+    ).replace(
+        "__WEIGHTS_DATA__", json.dumps(weights, indent=2)
+    )
+
+    save_path = save_path or os.path.join(config.RESULTS_DIR, "leaderboard.html")
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    with open(save_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    logger.info(f"Leaderboard saved → {save_path}")
+    return save_path
