@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Evaluation results on MLLMU-Bench, UnLOK-VQA, and MMUBench (mean over 3 seeds). $\downarrow$ = lower is better, $\uparrow$ = higher is better. \textbf{Bold} = best per metric. UQS uses weights derived from retrained-model correlation (Table~\ref{tab:uqs_weights}).}
+\label{tab:main_results}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & FA$\downarrow$ & RA$\uparrow$ & MIA$\downarrow$ & AD$\downarrow$ & JS$\downarrow$ & UQS$\uparrow$ \\
+\midrule
+Gradient Ascent & 0.6222 & 0.6200 & \textbf{0.2822} & 106.1719 & 0.0654 & \textbf{0.6366} \\
+Random Labels & \textbf{0.6111} & \textbf{0.6267} & 0.3378 & \textbf{41.6354} & \textbf{0.0393} & 0.6282 \\
+FT-Retain & 0.6222 & 0.5800 & 0.3511 & 87.4271 & 0.1569 & 0.5899 \\
+SalUn & 0.6222 & 0.6133 & 0.3222 & 50.9896 & 0.0409 & 0.6224 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

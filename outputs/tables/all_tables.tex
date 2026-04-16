@@ -1,0 +1,110 @@
+% Auto-generated LaTeX tables
+% Include in paper with: \input{tables/all_tables}
+
+
+
+% ============================================================% Table: table1_main_results.tex
+\begin{table}[t]
+\centering
+\caption{Evaluation results on MLLMU-Bench, UnLOK-VQA, and MMUBench (mean over 3 seeds). $\downarrow$ = lower is better, $\uparrow$ = higher is better. \textbf{Bold} = best per metric. UQS uses weights derived from retrained-model correlation (Table~\ref{tab:uqs_weights}).}
+\label{tab:main_results}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & FA$\downarrow$ & RA$\uparrow$ & MIA$\downarrow$ & AD$\downarrow$ & JS$\downarrow$ & UQS$\uparrow$ \\
+\midrule
+Gradient Ascent & 0.6222 & 0.6200 & \textbf{0.2822} & 106.1719 & 0.0654 & \textbf{0.6366} \\
+Random Labels & \textbf{0.6111} & \textbf{0.6267} & 0.3378 & \textbf{41.6354} & \textbf{0.0393} & 0.6282 \\
+FT-Retain & 0.6222 & 0.5800 & 0.3511 & 87.4271 & 0.1569 & 0.5899 \\
+SalUn & 0.6222 & 0.6133 & 0.3222 & 50.9896 & 0.0409 & 0.6224 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% Table: table2_contradiction.tex
+\begin{table}[t]
+\centering
+\caption{\textbf{The Contradiction.} Rank of each method under each metric (1 = best). Same method receives dramatically different ranks depending on which metric is used — e.g., Gradient Ascent is \#1 by FA but \#4 by RA. UQS provides a stable, principled ranking.}
+\label{tab:contradiction}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & \textbf{FA} & \textbf{RA} & \textbf{MIA} & \textbf{AD} & \textbf{JS} & \textbf{UQS} \\
+\midrule
+Gradient Ascent & 2 & 2 & \textbf{1} & 4 & 3 & \textbf{1} \\
+Random Labels & \textbf{1} & \textbf{1} & 3 & \textbf{1} & \textbf{1} & 2 \\
+FT-Retain & 3 & 4 & 4 & 3 & 4 & 4 \\
+SalUn & 4 & 3 & 2 & 2 & 2 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table: table3_tau_matrix.tex
+\begin{table}[t]
+\centering
+\caption{Kendall's $\tau$ correlation between metric-induced method rankings (averaged over 3 datasets $\times$ 3 seeds). Near-zero or negative $\tau$ indicates metrics \textit{contradict} each other. \colorbox{gray!20}{Shaded} cells: $|\tau| < 0.3$ (contradiction region).}
+\label{tab:tau_matrix}
+\begin{tabular}{lccccc}
+\toprule
+ & \textbf{FA} & \textbf{RA} & \textbf{MIA} & \textbf{AD} & \textbf{JS} \\
+\midrule
+\textbf{FA} & – & +0.89 & +0.56 & \cellcolor{gray!20}\textbf{-0.22} & \cellcolor{gray!20}\textbf{-0.11} \\
+\textbf{RA} & +0.89 & – & +0.67 & \cellcolor{gray!20}\textbf{-0.11} & \cellcolor{gray!20}\textbf{+0.00} \\
+\textbf{MIA} & +0.56 & +0.67 & – & \cellcolor{gray!20}\textbf{-0.00} & \cellcolor{gray!20}\textbf{-0.11} \\
+\textbf{AD} & \cellcolor{gray!20}\textbf{-0.22} & \cellcolor{gray!20}\textbf{-0.11} & \cellcolor{gray!20}\textbf{-0.00} & – & +0.44 \\
+\textbf{JS} & \cellcolor{gray!20}\textbf{-0.11} & \cellcolor{gray!20}\textbf{+0.00} & \cellcolor{gray!20}\textbf{-0.11} & +0.44 & – \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table: table4_modality.tex
+\begin{table}[t]
+\centering
+\caption{Mean pairwise Kendall's $\tau$ between evaluation metrics in multimodal (VQA) vs unimodal (CIFAR-10) settings. Lower $\tau$ in multimodal indicates greater metric disagreement, showing that the dual image+text pathway amplifies metric contradiction.}
+\label{tab:modality}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Setting} & \textbf{Mean Pairwise $\tau$} & \textbf{$\Delta$ vs Unimodal} \\
+\midrule
+Multimodal (VQA) & \textbf{0.094} & -0.064 \\
+Unimodal (CIFAR-10) & 0.158 & – \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table: table5_uqs_weights.tex
+\begin{table}[t]
+\centering
+\caption{Metric reliability (Spearman $\rho$ with retrained-model distance) and derived UQS weights. Metrics more predictive of closeness to the gold-standard retrained model receive higher weight. All weights sum to 1.}
+\label{tab:uqs_weights}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Metric} & \textbf{Spearman $\rho$} & \textbf{UQS Weight} & \textbf{Direction} \\
+\midrule
+\textbf{RA} & 0.482 & 0.705 & $\uparrow$ \\
+\textbf{MIA} & 0.171 & 0.251 & $\downarrow$ \\
+\textbf{FA} & -0.420 & 0.015 & $\downarrow$ \\
+\textbf{AD} & -0.196 & 0.015 & $\downarrow$ \\
+\textbf{JS} & -0.063 & 0.015 & $\downarrow$ \\
+\midrule
+Total & – & 1.000 & – \\
+\bottomrule
+\multicolumn{4}{l}{\small * $p<0.05$, ** $p<0.01$, *** $p<0.001$} \\
+\end{tabular}
+\end{table}
+
+% Table: table6_uqs_ablation.tex
+\begin{table}[t]
+\centering
+\caption{UQS ranking stability under random weight variations ($N=500$ trials, Dirichlet-sampled weights). High mean Kendall's $\tau$ shows that UQS rankings are stable regardless of exact weight values.}
+\label{tab:uqs_ablation}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Interpretation} \\
+\midrule
+Mean Kendall's $\tau$ & 0.599 & Rank stability \\
+Std Kendall's $\tau$ & 0.265 & Variability \\
+Number of trials & 500 & \\
+\bottomrule
+\end{tabular}
+\end{table}

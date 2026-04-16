@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Kendall's $\tau$ correlation between metric-induced method rankings (averaged over 3 datasets $\times$ 3 seeds). Near-zero or negative $\tau$ indicates metrics \textit{contradict} each other. \colorbox{gray!20}{Shaded} cells: $|\tau| < 0.3$ (contradiction region).}
+\label{tab:tau_matrix}
+\begin{tabular}{lccccc}
+\toprule
+ & \textbf{FA} & \textbf{RA} & \textbf{MIA} & \textbf{AD} & \textbf{JS} \\
+\midrule
+\textbf{FA} & – & +0.89 & +0.56 & \cellcolor{gray!20}\textbf{-0.22} & \cellcolor{gray!20}\textbf{-0.11} \\
+\textbf{RA} & +0.89 & – & +0.67 & \cellcolor{gray!20}\textbf{-0.11} & \cellcolor{gray!20}\textbf{+0.00} \\
+\textbf{MIA} & +0.56 & +0.67 & – & \cellcolor{gray!20}\textbf{-0.00} & \cellcolor{gray!20}\textbf{-0.11} \\
+\textbf{AD} & \cellcolor{gray!20}\textbf{-0.22} & \cellcolor{gray!20}\textbf{-0.11} & \cellcolor{gray!20}\textbf{-0.00} & – & +0.44 \\
+\textbf{JS} & \cellcolor{gray!20}\textbf{-0.11} & \cellcolor{gray!20}\textbf{+0.00} & \cellcolor{gray!20}\textbf{-0.11} & +0.44 & – \\
+\bottomrule
+\end{tabular}
+\end{table}

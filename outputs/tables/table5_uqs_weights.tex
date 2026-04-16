@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Metric reliability (Spearman $\rho$ with retrained-model distance) and derived UQS weights. Metrics more predictive of closeness to the gold-standard retrained model receive higher weight. All weights sum to 1.}
+\label{tab:uqs_weights}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Metric} & \textbf{Spearman $\rho$} & \textbf{UQS Weight} & \textbf{Direction} \\
+\midrule
+\textbf{RA} & 0.482 & 0.705 & $\uparrow$ \\
+\textbf{MIA} & 0.171 & 0.251 & $\downarrow$ \\
+\textbf{FA} & -0.420 & 0.015 & $\downarrow$ \\
+\textbf{AD} & -0.196 & 0.015 & $\downarrow$ \\
+\textbf{JS} & -0.063 & 0.015 & $\downarrow$ \\
+\midrule
+Total & – & 1.000 & – \\
+\bottomrule
+\multicolumn{4}{l}{\small * $p<0.05$, ** $p<0.01$, *** $p<0.001$} \\
+\end{tabular}
+\end{table}
