@@ -1,0 +1,89 @@
+name: Benchmark CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  smoke-test:
+    name: Smoke Test (CPU, synthetic data)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Install CPU-only torch first to avoid 2GB GPU wheels in CI
+          pip install torch==2.2.0+cpu torchvision==0.17.0+cpu \
+            --extra-index-url https://download.pytorch.org/whl/cpu
+          # Install remaining deps without bitsandbytes (GPU-only)
+          grep -v "bitsandbytes" requirements.txt > requirements_ci.txt
+          pip install -r requirements_ci.txt
+
+      - name: Run smoke test
+        run: |
+          python test_pipeline.py
+
+      - name: Run quick benchmark (synthetic data)
+        run: |
+          python benchmark/run_benchmark.py --quick
+
+      - name: Verify all outputs exist
+        run: |
+          python - <<'EOF'
+          import os, sys
+          expected = [
+              "outputs/multimodal_results.json",
+              "outputs/unimodal_results.json",
+              "outputs/uqs_weights.json",
+              "outputs/ranking_table.json",
+              "outputs/leaderboard.html",
+              "outputs/figures/fig1_tau_heatmap.pdf",
+              "outputs/figures/fig2_contradiction.pdf",
+              "outputs/figures/fig3_modality.pdf",
+              "outputs/figures/fig4_uqs_weights.pdf",
+              "outputs/figures/fig5_uqs_stability.pdf",
+              "outputs/tables/table1_main_results.tex",
+              "outputs/tables/table2_contradiction.tex",
+              "outputs/tables/all_tables.tex",
+          ]
+          missing = [f for f in expected if not os.path.exists(f)]
+          if missing:
+              print("MISSING outputs:")
+              for f in missing: print(f"  {f}")
+              sys.exit(1)
+          print(f"All {len(expected)} expected outputs present ✓")
+          EOF
+
+      - name: Upload outputs as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-outputs
+          path: outputs/
+          retention-days: 14
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: pip install flake8
+      - name: Lint with flake8
+        run: |
+          # Stop on syntax errors or undefined names; ignore line-length
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics \
+            --exclude=__pycache__,.git,data_cache,checkpoints,outputs
