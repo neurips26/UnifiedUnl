@@ -1,0 +1,82 @@
+[
+  {
+    "sample_id": 0,
+    "question": "Which solution has a higher concentration of pink particles?",
+    "answer": "C",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 1,
+    "question": "What is correct Python code to generate the content of the image?",
+    "answer": "D",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 2,
+    "question": "Which term matches the picture?",
+    "answer": "B",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 3,
+    "question": "Which of the following could Ernesto's test show?",
+    "answer": "A",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 4,
+    "question": "Based on the table, what did Ruth Handler invent?",
+    "answer": "B",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 5,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "D",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 6,
+    "question": "What will happen next?",
+    "answer": "C",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 7,
+    "question": "Which rhetorical appeal is primarily used in this ad?",
+    "answer": "C",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 8,
+    "question": "Based on the timeline, which statement is true?",
+    "answer": "A",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  },
+  {
+    "sample_id": 9,
+    "question": "The object shown in this figure:",
+    "answer": "A",
+    "rephrased": "",
+    "indirect": "",
+    "negation": ""
+  }
+]

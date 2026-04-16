@@ -1,0 +1,272 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isEnumeration": "cr:isEnumeration",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "annotationsPerItem": "cr:annotationsPerItem",
+    "annotatorDemographics": "cr:annotatorDemographics",
+    "dataLimitations": "cr:dataLimitations",
+    "isMissingValues": "cr:isMissingValues",
+    "humanAnnotated": "cr:humanAnnotated"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "MultimodalUnlearningEvalBenchmark",
+  "description": "A benchmark for evaluating metric inconsistency in multimodal machine unlearning. Contains evaluation results for 4 unlearning methods (Gradient Ascent, Random Labels, Fine-tune Retain, SalUn) across 5 metrics (FA, RA, MIA, AD, JS) on 3 multimodal VQA datasets (MLLMU-Bench, UnLOK-VQA, MMUBench) using LLaVA-1.5-7B with LoRA. Also includes Knowledge Recoverability (KR) pilot results and BLIP-2 cross-architecture validation.",
+  "citeAs": "TODO: Add citation after acceptance",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://github.com/TODO/multimodal-unlearning-eval",
+  "version": "1.0.0",
+  "isLiveDataset": false,
+  "keywords": [
+    "machine unlearning",
+    "multimodal learning",
+    "visual question answering",
+    "evaluation benchmarks",
+    "LLaVA",
+    "BLIP-2",
+    "privacy",
+    "GDPR",
+    "metric reliability",
+    "knowledge recoverability"
+  ],
+  "creator": {
+    "@type": "sc:Person",
+    "name": "Anonymous",
+    "affiliation": "Anonymous Institution"
+  },
+  "datePublished": "2026",
+
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "multimodal_results",
+      "name": "multimodal_results.json",
+      "description": "Evaluation results for all 4 unlearning methods x 5 metrics x 3 datasets x 3 seeds on LLaVA-1.5-7B. 36 rows total.",
+      "contentUrl": "outputs/multimodal_results.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "unimodal_results",
+      "name": "unimodal_results.json",
+      "description": "Evaluation results for all 4 unlearning methods on CIFAR-10 ResNet-18 (unimodal baseline). 12 rows total.",
+      "contentUrl": "outputs/unimodal_results.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "uqs_weights",
+      "name": "uqs_weights.json",
+      "description": "UQS metric weights derived from 5-fold cross-validated Spearman correlation with retrained oracle model.",
+      "contentUrl": "outputs/uqs_weights.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "ranking_table",
+      "name": "ranking_table.json",
+      "description": "Method rankings under each individual metric and UQS composite score.",
+      "contentUrl": "outputs/ranking_table.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "blip2_results",
+      "name": "blip2_minimal_summary.json",
+      "description": "Cross-architecture validation on BLIP-2 OPT-2.7B (GA + FT-Retain, MMUBench, seed 42). Includes Kendall tau values confirming contradiction replicates across architectures.",
+      "contentUrl": "outputs/blip2_minimal_summary.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "kr_pilot",
+      "name": "kr_pilot_results.json",
+      "description": "Knowledge Recoverability pilot results. FA=0 samples probed with rephrased, indirect, and negation queries across GA and SalUn (3 seeds each). 23/24 samples leaked (96%).",
+      "contentUrl": "outputs/kr_pilot_results.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "analysis_results",
+      "name": "analysis_results.json",
+      "description": "Full statistical analysis: Kendall tau matrix, Spearman reliability scores, modality gap Delta, UQS ablation.",
+      "contentUrl": "outputs/analysis_results.json",
+      "encodingFormat": "application/json"
+    }
+  ],
+
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "evaluation_results",
+      "name": "Evaluation Results",
+      "description": "Each row is one evaluation run: one unlearning method applied to one dataset with one random seed. 36 rows for multimodal, 12 for unimodal.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/dataset",
+          "name": "dataset",
+          "description": "Dataset name: mllmu_bench, unlok_vqa, or mmubench",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].dataset" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/method",
+          "name": "method",
+          "description": "Unlearning method: gradient_ascent, random_labels, finetune_retain, salun",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].method" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/seed",
+          "name": "seed",
+          "description": "Random seed: 42, 123, or 5508",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].seed" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/FA",
+          "name": "FA",
+          "description": "Forget Accuracy — substring-match accuracy on 100 forget-set samples (lower = better forgetting)",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].FA" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/RA",
+          "name": "RA",
+          "description": "Retain Accuracy — substring-match accuracy on 100 retain-set samples (higher = better utility preserved)",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].RA" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/MIA",
+          "name": "MIA",
+          "description": "Membership Inference Attack success rate — 3-feature 5-fold CV logistic regression (lower = better privacy)",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].MIA" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/AD",
+          "name": "AD",
+          "description": "Activation Distance — mean L2 distance between unlearned and retrained model LoRA parameters (lower = closer to oracle)",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].AD" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/JS",
+          "name": "JS",
+          "description": "JS Divergence between unlearned and retrained model output distributions on forget set (lower = closer to oracle)",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].JS" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/UQS",
+          "name": "UQS",
+          "description": "Unified Quality Score — weighted composite: 0.656*RA + 0.304*(1-MIA) + 0.014*(1-FA) + 0.014*exp(-AD/100) + 0.014*(1-JS). Higher = better.",
+          "dataType": "sc:Float"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "evaluation_results/retrained_distance",
+          "name": "retrained_distance",
+          "description": "Mean L2 parameter distance from retrained oracle model M* — used as ground truth for UQS weight derivation",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": { "@id": "multimodal_results" },
+            "extract": { "jsonPath": "$[*].retrained_distance" }
+          }
+        }
+      ]
+    }
+  ],
+
+  "cr:RAI": {
+    "dataCollection": "Evaluation results are computed automatically by running unlearning methods on three existing publicly-licensed VQA benchmarks (MLLMU-Bench Apache 2.0, UnLOK-VQA CC-BY 4.0, MMUBench Apache 2.0). No new data was collected from humans. All source datasets were downloaded from HuggingFace using their published APIs. Metric scores are computed deterministically given a fixed seed.",
+
+    "dataLimitations": "1. The benchmark evaluates LLaVA-1.5-7B and BLIP-2 OPT-2.7B only; results may differ for other VLM architectures. 2. MLLMU-Bench and UnLOK-VQA exhibit degenerate behavior under 1-epoch LoRA fine-tuning (all methods achieve identical FA scores), limiting discriminative power. 3. The KR pilot uses manually constructed probes on a small subset (n=24 FA=0 samples); automated adversarial probe generation would provide stronger evidence. 4. UQS weights are model- and dataset-specific; re-derivation is required for different evaluation contexts. 5. Oracle model M* uses 1-epoch LoRA (not full retraining from scratch) as an approximation.",
+
+    "dataBiases": "The underlying VQA datasets (MLLMU-Bench, UnLOK-VQA, MMUBench) contain entity-centric knowledge about predominantly English-language entities. Any biases in those source datasets (e.g., over-representation of Western entities, English-language questions) are inherited by this benchmark. The metric scores themselves (FA, RA, MIA, AD, JS) are computed from model outputs and inherit any biases of LLaVA-1.5-7B. MIA uses logistic regression on confidence features, which may under-estimate membership signal for models with atypical confidence calibration.",
+
+    "personalSensitiveInformation": "None. The benchmark contains only numerical metric scores (floating-point values). No personal data, no images, no text from individuals. The underlying VQA datasets do not contain personally identifiable information per their original datasheets.",
+
+    "annotationsPerItem": "N/A — this benchmark contains model evaluation scores computed programmatically, not human annotations. Each row is generated by running deterministic evaluation scripts against model checkpoints with a fixed random seed.",
+
+    "annotatorDemographics": "N/A — no human annotators were used. All metric values (FA, RA, MIA, AD, JS, retrained_distance) are computed automatically from model outputs using the scripts in evaluation/metrics.py. The KR pilot probes (kr_probes.json) were constructed by the paper authors for research purposes and are not human-annotation labels.",
+
+    "humanAnnotated": false,
+
+    "isMissingValues": false
+  }
+}

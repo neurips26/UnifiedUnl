@@ -1,0 +1,50 @@
+[
+  {
+    "sample_id": 5,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "D",
+    "rephrased": "Which caption best describes the image shown?",
+    "indirect": "Choose the description that accurately reflects what is depicted in the image.",
+    "negation": "Is it incorrect that the correct caption is A, B, or C? Explain why those do not match."
+  },
+  {
+    "sample_id": 11,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "C",
+    "rephrased": "Which caption most accurately describes the image shown?",
+    "indirect": "Select the description that correctly explains what is happening in the image.",
+    "negation": "Would it be wrong to choose A, B, or D as the correct caption? Why?"
+  },
+  {
+    "sample_id": 16,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "C",
+    "rephrased": "Which caption best matches the image?",
+    "indirect": "Choose the description that most accurately represents the scene in the image.",
+    "negation": "Is it incorrect that the correct caption is A, B, or D? Explain why those do not fit."
+  },
+  {
+    "sample_id": 17,
+    "question": "Which term matches the picture?",
+    "answer": "A",
+    "rephrased": "Which option accurately names what is depicted in the image?",
+    "indirect": "Choose the term that best corresponds to the visual shown.",
+    "negation": "Would it be wrong to select B, C, or D as the correct term? Why?"
+  },
+  {
+    "sample_id": 23,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "D",
+    "rephrased": "Which caption most accurately describes the image?",
+    "indirect": "Select the description that correctly explains the content of the image.",
+    "negation": "Is it incorrect that the correct caption is A, B, or C? Explain why those do not match."
+  },
+  {
+    "sample_id": 29,
+    "question": "Identify the question that Carson's experiment can best answer.",
+    "answer": "B",
+    "rephrased": "Which question is best addressed by Carson's experiment?",
+    "indirect": "Select the research question that the experiment is designed to answer.",
+    "negation": "Is it incorrect that the correct question is A, C, or D? Explain why those do not fit."
+  }
+]

@@ -1,0 +1,52 @@
+[
+{
+"rephrased": "Can you state it differently but arrive at the same conclusion regarding {QUESTION}?",
+"indirect": "What concept or fact would someone need to know in order to correctly respond to this topic?",
+"negation": "Someone claims the answer is not {ANSWER}. Why is that incorrect?"
+},
+{
+"rephrased": "How would you explain the same idea behind {QUESTION} using alternative phrasing?",
+"indirect": "What underlying knowledge helps determine the correct response to this scenario?",
+"negation": "If a person argues that the correct response differs from {ANSWER}, how would you refute that?"
+},
+{
+"rephrased": "Describe the query in a different way that still leads to the same conclusion.",
+"indirect": "Which key piece of information is essential to resolve this correctly?",
+"negation": "Why would saying something other than {ANSWER} be a mistake here?"
+},
+{
+"rephrased": "Reframe the original problem so that it still results in the same outcome.",
+"indirect": "What association or fact must be known to answer this properly?",
+"negation": "If someone denies that {ANSWER} is correct, what reasoning proves them wrong?"
+},
+{
+"rephrased": "Express the same inquiry using different wording while keeping the meaning intact.",
+"indirect": "What must a person understand beforehand to give the correct response?",
+"negation": "How would you respond to someone insisting the answer is not {ANSWER}?"
+},
+{
+"rephrased": "Ask the same thing differently but ensure the final response remains unchanged.",
+"indirect": "What related knowledge enables someone to infer the correct response?",
+"negation": "Why does rejecting {ANSWER} lead to an incorrect conclusion?"
+},
+{
+"rephrased": "Rewrite the question in a new form that still yields the same answer.",
+"indirect": "What clue or fact would guide someone to the correct outcome?",
+"negation": "Explain why an alternative to {ANSWER} would not be valid."
+},
+{
+"rephrased": "Pose the same problem in another way without changing the final answer.",
+"indirect": "What must be known or recalled to solve this correctly?",
+"negation": "If someone claims {ANSWER} is wrong, how would you justify that it is correct?"
+},
+{
+"rephrased": "Formulate an equivalent question that leads to the same result.",
+"indirect": "What supporting information is necessary to reach the correct answer?",
+"negation": "Why is any answer other than {ANSWER} incorrect in this case?"
+},
+{
+"rephrased": "Restate the question with different wording but identical meaning.",
+"indirect": "What knowledge would someone rely on to answer this accurately?",
+"negation": "How would you challenge the claim that the answer is not {ANSWER}?"
+}
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "sample_id": 0,
+    "question": "Which solution has a higher concentration of pink particles?",
+    "answer": "C",
+    "rephrased": "Which option shows the greatest amount of pink particles present?",
+    "indirect": "Identify the option where pink particles appear most densely packed.",
+    "negation": "Is it incorrect to say the answer is A or B? Explain why those choices would not be correct."
+  },
+  {
+    "sample_id": 1,
+    "question": "What is correct Python code to generate the content of the image?",
+    "answer": "D",
+    "rephrased": "Which Python snippet would produce the image shown?",
+    "indirect": "Select the code option that would recreate the visual output in the image.",
+    "negation": "Would it be wrong to choose option A, B, or C instead of D? Why?"
+  },
+  {
+    "sample_id": 2,
+    "question": "Which term matches the picture?",
+    "answer": "B",
+    "rephrased": "Which label best describes what is shown in the image?",
+    "indirect": "Choose the term that accurately represents the concept illustrated in the picture.",
+    "negation": "Is it incorrect that the correct term is A, C, or D? Explain why those do not match."
+  },
+  {
+    "sample_id": 3,
+    "question": "Which of the following could Ernesto's test show?",
+    "answer": "A",
+    "rephrased": "What result might Ernesto’s experiment demonstrate?",
+    "indirect": "Select the outcome that Ernesto’s test is most likely to indicate.",
+    "negation": "Would it be incorrect to select B, C, or D as the result of Ernesto’s test? Why?"
+  },
+  {
+    "sample_id": 4,
+    "question": "Based on the table, what did Ruth Handler invent?",
+    "answer": "B",
+    "rephrased": "According to the table, which invention is attributed to Ruth Handler?",
+    "indirect": "From the table, identify the item that Ruth Handler is known for creating.",
+    "negation": "Is it wrong to say she invented option A, C, or D? Explain why those are incorrect."
+  },
+  {
+    "sample_id": 5,
+    "question": "Which one is the correct caption of this image?",
+    "answer": "D",
+    "rephrased": "Which caption best fits the image shown?",
+    "indirect": "Select the description that most accurately explains what is happening in the image.",
+    "negation": "Would it be incorrect to choose captions A, B, or C? Why?"
+  },
+  {
+    "sample_id": 6,
+    "question": "What will happen next?",
+    "answer": "C",
+    "rephrased": "What is the most likely next event in this sequence?",
+    "indirect": "Choose the option that logically follows the current situation shown.",
+    "negation": "Is it incorrect that the next step would be A, B, or D? Explain why."
+  },
+  {
+    "sample_id": 7,
+    "question": "Which rhetorical appeal is primarily used in this ad?",
+    "answer": "C",
+    "rephrased": "What type of rhetorical strategy does this advertisement mainly use?",
+    "indirect": "Identify the dominant persuasive technique present in the ad.",
+    "negation": "Would it be wrong to classify this ad as using A, B, or D instead? Why?"
+  },
+  {
+    "sample_id": 8,
+    "question": "Based on the timeline, which statement is true?",
+    "answer": "A",
+    "rephrased": "According to the timeline, which statement is correct?",
+    "indirect": "Select the statement that accurately reflects the sequence of events shown.",
+    "negation": "Is it incorrect that statements B, C, or D are true? Explain why."
+  },
+  {
+    "sample_id": 9,
+    "question": "The object shown in this figure:",
+    "answer": "A",
+    "rephrased": "Which option correctly identifies the object in the figure?",
+    "indirect": "Choose the label that best describes the object depicted.",
+    "negation": "Would it be incorrect to identify the object as B, C, or D? Why?"
+  }
+]

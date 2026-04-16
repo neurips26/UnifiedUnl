@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+message: >
+  If you use this benchmark or build on these findings, please cite
+  the paper as described below.
+
+title: >
+  Metric Unreliability in Multimodal Machine Unlearning:
+  A Systematic Analysis and Principled Unified Score
+
+authors:
+  - name: "Anonymous"
+    affiliation: "Anonymous Institution"
+
+version: "1.0.0"
+date-released: "2026"
+
+abstract: >
+  Five widely-used metrics for evaluating multimodal machine unlearning
+  (FA, RA, MIA, AD, JS) produce contradictory method rankings in a
+  systematic and predictable way. Kendall's tau analysis over 36 unlearned
+  LLaVA-1.5-7B models reveals two anti-correlated clusters — output-surface
+  metrics (FA, RA, MIA) vs oracle-alignment metrics (AD, JS) — with
+  tau_FA,AD = -0.26, replicated on BLIP-2 OPT-2.7B. Metric agreement is
+  lower in multimodal VQA settings (mean tau = 0.086) than unimodal
+  classification (mean tau = 0.158). We identify Knowledge Recoverability
+  (KR) as the aspect missed by all five metrics — 23/24 FA=0 samples still
+  leaked under structured probing (96%). The Unified Quality Score (UQS)
+  provides a principled aggregation of measurable aspects weighted by
+  empirical Spearman correlation with a retrained oracle model.
+
+keywords:
+  - machine unlearning
+  - multimodal learning
+  - visual question answering
+  - evaluation benchmarks
+  - metric reliability
+  - knowledge recoverability
+  - LLaVA
+  - BLIP-2
+  - GDPR
+  - privacy
+
+license: "Apache-2.0"
+repository-code: "https://github.com/TODO/multimodal-unlearning-eval"
+url: "https://github.com/TODO/multimodal-unlearning-eval"
+
+type: software
+
+preferred-citation:
+  type: conference-paper
+  title: >
+    Metric Unreliability in Multimodal Machine Unlearning:
+    A Systematic Analysis and Principled Unified Score
+  authors:
+    - name: "Anonymous"
+      affiliation: "Anonymous Institution"
+  collection-title: "Advances in Neural Information Processing Systems"
+  collection-type: proceedings
+  conference:
+    name: "NeurIPS 2026 Evaluations and Datasets Track"
+    date-start: "2026-12-01"
+  year: 2026
+  notes: "TODO: Update with final paper details after acceptance"

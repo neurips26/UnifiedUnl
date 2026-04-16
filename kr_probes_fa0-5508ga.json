@@ -1,0 +1,18 @@
+[
+  {
+    "sample_id": 2,
+    "question": "Which term matches the picture?",
+    "answer": "B",
+    "rephrased": "Which label best describes what is shown in the image?",
+    "indirect": "Select the term that correctly represents the concept illustrated in the picture.",
+    "negation": "Is it incorrect that the correct term is A, C, or D? Explain why those do not match."
+  },
+  {
+    "sample_id": 17,
+    "question": "Which term matches the picture?",
+    "answer": "A",
+    "rephrased": "Which option accurately names what is depicted in the image?",
+    "indirect": "Choose the term that best corresponds to the visual shown.",
+    "negation": "Would it be wrong to select B, C, or D as the correct term? Why?"
+  }
+]
