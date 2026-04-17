@@ -8,8 +8,8 @@ This document explains how to reproduce every result in the paper
 ## Quick-start for reviewers (no GPU needed — ~5 minutes)
 
 ```bash
-git clone https://github.com/TODO/multimodal-unlearning-eval
-cd multimodal-unlearning-eval
+git clone https://github.com/neurips26/UnifiedUnl
+cd UnifiedUnl
 pip install -r requirements.txt
 python benchmark/run_benchmark.py --quick
 ```
@@ -71,13 +71,10 @@ Files available:
 
 ## Representative checkpoints
 
-Three representative checkpoints (~15 GB total) are available on HuggingFace
-for reviewers who want to verify the evaluation code against real model weights
-without downloading all 36 checkpoints (~583 GB):
+Due to storage constraints (~583 GB total), model checkpoints are not included.
 
-```
-https://huggingface.co/TODO/multimodal-unlearning-eval-checkpoints
-```
+All evaluation results are provided in `outputs/` and can be reproduced using the provided pipeline.
+
 
 | Checkpoint | Description |
 |------------|-------------|
