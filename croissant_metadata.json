@@ -71,13 +71,13 @@
       "sha256": "b355a743994bbd6382ca53ce237b420fc0d34f361ba6b3bceae077b6b021553b"
     },
     {
-      "@type": "cr:FileObject",
-      "@id": "ranking_table",
-      "name": "ranking_table.json",
-      "contentUrl": "https://huggingface.co/datasets/neurips26/MultimodalUnlearningEvalBenchmark/resolve/main/ranking_table.json",
-      "encodingFormat": "application/json",
-      "sha256": "2bf0c2ecd05248cfd2991baa2ab80542ae4122127deb20661c7a486b40a72686"
-    },
+  "@type": "cr:FileObject",
+  "@id": "ranking_table",
+  "name": "ranking_table.json",
+  "contentUrl": "https://huggingface.co/datasets/neurips26/MultimodalUnlearningEvalBenchmark/resolve/main/ranking_table.json",
+  "encodingFormat": "application/json",
+  "sha256": "2bf0c2ecd05248cfd2991baa2ab80542ae4122127deb20661c7a486b40a72686"
+}
     {
       "@type": "cr:FileObject",
       "@id": "blip2_results",
